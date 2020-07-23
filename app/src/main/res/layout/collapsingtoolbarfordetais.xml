@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/appbarlayout"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        >
+        <com.google.android.material.appbar.CollapsingToolbarLayout
+            android:background="@drawable/btn_style2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_scrollFlags="exitUntilCollapsed|scroll|snap"
+            android:contentDescription="@string/todo"
+            app:expandedTitleTextAppearance="@android:color/transparent"
+            app:collapsedTitleTextAppearance="@style/TextAppearance.AppCompat.Title"
+            app:contentScrim="#FF6C6C"
+            >
+
+            <include layout="@layout/layout_item_house_data"
+                app:layout_collapseMode="pin"
+                app:layout_scrollFlags="scroll|enterAlways"
+                />
+
+            <androidx.appcompat.widget.Toolbar
+                android:layout_width="match_parent"
+                app:titleTextColor="#000"
+                android:id="@+id/toolbar_collapsing"
+                app:layout_collapseMode="pin"
+                app:navigationIcon="?attr/homeAsUpIndicator"
+                app:layout_scrollFlags= "scroll|enterAlways"
+                android:layout_height="?attr/actionBarSize"
+                app:popupTheme="@drawable/btn_style2"
+                />
+
+        </com.google.android.material.appbar.CollapsingToolbarLayout>
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/send_request"
+        android:src="@drawable/ic_baseline_send_24"
+        app:layout_anchor="@id/appbarlayout"
+        app:layout_anchorGravity="bottom|right|end"
+        android:layout_margin="30dp"
+        />
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        >
+        <include
+            layout="@layout/item_show_detail_property"
+            app:layout_collapseMode="pin"
+            app:layout_scrollFlags="scroll|enterAlways"
+            />
+    </androidx.core.widget.NestedScrollView>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

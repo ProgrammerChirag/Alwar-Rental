@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    android:layout_marginBottom="15dp"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:cardElevation="10dp"
+    app:cardCornerRadius="8dp"
+    android:layout_gravity="center"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:padding="10dp"
+    android:background="#FFE47C"
+    android:layout_height="150dp">
+
+    <TextView
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginStart="20dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/requestTypeItem"
+        android:layout_marginTop="20sp"
+        android:textColor="#000"
+        android:textSize="22sp"
+
+        android:fontFamily="@font/baloo_bhai"
+        android:text="@string/purchase_request"
+        />
+
+    <TextView
+        android:id="@+id/status"
+        android:layout_width="151dp"
+        android:layout_height="37dp"
+        android:layout_marginStart="20sp"
+        android:fontFamily="@font/roboto_medium"
+        android:text="@string/status_approved"
+        android:textColor="#485460"
+        android:textSize="18sp"
+        android:layout_marginTop="10dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/requestTypeItem" />
+
+
+    <TextView
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/name_account_holder"
+        android:layout_marginBottom="5dp"
+        android:textColor="#485460"
+        android:fontFamily="@font/roboto_medium"
+        android:text="@string/chirag_juneja"
+        />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/more"
+        android:id="@+id/more_details"
+        android:background="@android:color/transparent"
+        android:textColor="#0FBCF9"
+        android:textAllCaps="false"
+        android:fontFamily="@font/montserrat"
+        android:layout_marginTop="20sp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginStart="0dp"
+        android:textSize="20sp"
+
+        />
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.cardview.widget.CardView>

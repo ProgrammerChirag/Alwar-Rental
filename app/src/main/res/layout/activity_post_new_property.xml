@@ -1,0 +1,524 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+
+    android:background="#fff"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="Seller.ActivityPostNewProperty">
+
+
+    <androidx.appcompat.widget.Toolbar
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:id="@+id/toolbar"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#fa8231"
+        >
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:ignore="UseCompoundDrawables">
+            <ImageView
+                android:contentDescription="@string/todo"
+                android:layout_width="wrap_content"
+                android:id="@+id/backBtn"
+                android:layout_height="match_parent"
+                android:src="@drawable/ic_back"
+                />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:fontFamily="@font/baloo_bhai"
+                android:gravity="center_vertical|center_horizontal"
+                android:text="@string/please_fill_all_the_details_correct"
+                android:textColor="#fff"
+                android:textSize="18sp" />
+
+        </LinearLayout>
+    </androidx.appcompat.widget.Toolbar>
+
+   <androidx.core.widget.NestedScrollView
+
+       android:background="#fff"
+       android:layout_width="match_parent"
+       android:layout_height="620dp"
+       android:layout_marginTop="50dp"
+       app:layout_constraintLeft_toLeftOf="parent"
+       app:layout_constraintRight_toRightOf="parent"
+       app:layout_constraintTop_toTopOf="parent"
+       >
+
+       <androidx.constraintlayout.widget.ConstraintLayout
+           android:layout_width="match_parent"
+           android:layout_height="match_parent">
+
+           <TextView
+               android:layout_width="wrap_content"
+               android:gravity="center_vertical"
+               android:layout_height="wrap_content"
+               android:textSize="18sp"
+               android:padding="10dp"
+               android:textColor="#000"
+               android:id="@+id/hint1"
+               app:layout_constraintTop_toTopOf="@id/numBHK"
+               android:text="@string/numbhk"
+               app:layout_constraintBottom_toBottomOf="@id/numBHK"
+               app:layout_constraintLeft_toLeftOf="parent"
+               />
+
+           <RadioGroup
+               android:id="@+id/numBHK"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:background="@drawable/edit_text_style"
+               android:padding="10dp"
+               android:layout_marginStart="20sp"
+               android:layout_marginTop="15dp"
+               app:layout_constraintLeft_toRightOf="@id/hint1"
+               android:layout_marginEnd="8dp"
+               android:gravity="center_horizontal"
+               android:orientation="horizontal"
+               app:layout_constraintEnd_toEndOf="parent"
+               app:layout_constraintTop_toTopOf="parent">
+
+
+               <RadioButton
+                   android:id="@+id/oneBHk"
+                   android:layout_width="80dp"
+                   android:paddingTop="10dp"
+                   android:paddingBottom="10dp"
+                   android:paddingLeft="15dp"
+                   android:paddingRight="15dp"
+                   android:gravity="center"
+                   android:layout_height="wrap_content"
+                   android:layout_marginEnd="10dp"
+                   android:background="@drawable/radio_flat_selector"
+                   android:button="@android:color/transparent"
+                   android:checked="true"
+                   android:text="@string/_1"
+                   android:textColor="@color/radio_flat_text_selector" />
+
+               <RadioButton
+                   android:id="@+id/twoBHK"
+                   android:gravity="center"
+                   android:layout_width="80dp"
+                   android:paddingTop="10dp"
+                   android:paddingBottom="10dp"
+                   android:paddingLeft="15dp"
+                   android:paddingRight="15dp"
+                   android:layout_marginEnd="10dp"
+                   android:layout_height="wrap_content"
+                   android:background="@drawable/radio_flat_selector"
+                   android:button="@android:color/transparent"
+                   android:text="@string/_2"
+                   android:textColor="@color/radio_flat_text_selector" />
+
+               <RadioButton
+                   android:id="@+id/threeBHK"
+                   android:gravity="center"
+                   android:layout_width="80dp"
+                   android:paddingTop="10dp"
+                   android:paddingBottom="10dp"
+                   android:paddingLeft="15dp"
+                   android:paddingRight="15dp"
+                   android:layout_height="wrap_content"
+                   android:background="@drawable/radio_flat_selector"
+                   android:button="@android:color/transparent"
+                   android:text="@string/_3"
+                   android:textColor="@color/radio_flat_text_selector" />
+
+           </RadioGroup>
+
+           <TextView
+               android:layout_width="wrap_content"
+               android:gravity="center_vertical"
+               android:layout_height="wrap_content"
+               android:textSize="18sp"
+               android:padding="10dp"
+               android:textColor="#000"
+               android:id="@+id/hint2"
+               app:layout_constraintTop_toTopOf="@id/area"
+               android:text="@string/area"
+               app:layout_constraintBottom_toBottomOf="@id/area"
+               app:layout_constraintLeft_toLeftOf="parent"
+               />
+
+           <RadioGroup
+               android:id="@+id/area"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:layout_marginStart="20sp"
+               android:layout_marginTop="15dp"
+               android:layout_marginEnd="8dp"
+               android:gravity="center_horizontal"
+               android:background="@drawable/edit_text_style"
+               android:padding="10dp"
+               android:orientation="horizontal"
+               app:layout_constraintEnd_toEndOf="parent"
+               app:layout_constraintTop_toBottomOf="@id/numBHK"
+               app:layout_constraintRight_toLeftOf="@+id/hint2"
+               >
+
+
+               <RadioButton
+                   android:id="@+id/onRoad"
+                   android:layout_width="100dp"
+                   android:paddingTop="10dp"
+                   android:paddingBottom="10dp"
+                   android:paddingLeft="15dp"
+                   android:paddingRight="15dp"
+                   android:gravity="center"
+                   android:layout_height="wrap_content"
+                   android:layout_marginEnd="10dp"
+                   android:background="@drawable/radio_flat_selector"
+                   android:button="@android:color/transparent"
+                   android:checked="true"
+                   android:text="@string/onroad"
+                   android:textColor="@color/radio_flat_text_selector" />
+
+               <RadioButton
+                   android:id="@+id/localArea"
+                   android:gravity="center"
+                   android:layout_width="100dp"
+                   android:paddingTop="10dp"
+                   android:paddingBottom="10dp"
+                   android:paddingLeft="15dp"
+                   android:paddingRight="15dp"
+                   android:layout_marginEnd="10dp"
+                   android:layout_height="wrap_content"
+                   android:background="@drawable/radio_flat_selector"
+                   android:button="@android:color/transparent"
+                   android:text="@string/street"
+                   android:textColor="@color/radio_flat_text_selector" />
+
+               <RadioButton
+                   android:id="@+id/village"
+                   android:gravity="center"
+                   android:layout_width="100dp"
+                   android:paddingTop="10dp"
+                   android:paddingBottom="10dp"
+                   android:paddingLeft="15dp"
+                   android:paddingRight="15dp"
+                   android:layout_height="wrap_content"
+                   android:background="@drawable/radio_flat_selector"
+                   android:button="@android:color/transparent"
+                   android:text="@string/village"
+                   android:textColor="@color/radio_flat_text_selector" />
+
+           </RadioGroup>
+
+           <TextView
+               android:layout_width="wrap_content"
+               android:gravity="center_vertical"
+               android:layout_height="wrap_content"
+               android:textSize="18sp"
+               android:padding="10dp"
+               android:textColor="#000"
+               android:id="@+id/hint3"
+               app:layout_constraintTop_toTopOf="@id/background"
+               android:text="@string/background"
+               app:layout_constraintBottom_toBottomOf="@id/background"
+               app:layout_constraintLeft_toLeftOf="parent"
+               />
+
+           <RadioGroup
+               android:id="@+id/background"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:layout_marginStart="8dp"
+               android:layout_marginLeft="8dp"
+               android:layout_marginTop="15dp"
+               android:layout_marginEnd="8dp"
+               android:background="@drawable/edit_text_style"
+               android:padding="10dp"
+               android:layout_marginRight="8dp"
+               android:gravity="center_horizontal"
+               android:orientation="horizontal"
+               app:layout_constraintRight_toRightOf="parent"
+               app:layout_constraintLeft_toRightOf="@+id/hint3"
+               app:layout_constraintTop_toBottomOf="@id/area">
+
+
+               <RadioButton
+                   android:id="@+id/withGarden"
+                   android:layout_width="110dp"
+                   android:paddingTop="10dp"
+                   android:paddingBottom="10dp"
+                   android:paddingLeft="15dp"
+                   android:textAlignment="center"
+                   android:paddingRight="15dp"
+                   android:gravity="center"
+                   android:layout_height="wrap_content"
+                   android:layout_marginEnd="10dp"
+                   android:background="@drawable/radio_flat_selector"
+                   android:button="@android:color/transparent"
+                   android:checked="true"
+                   android:text="@string/withgarden"
+                   android:textColor="@color/radio_flat_text_selector" />
+
+               <RadioButton
+                   android:id="@+id/withoutGarden"
+                   android:gravity="center"
+                   android:layout_width="130dp"
+                   android:paddingTop="10dp"
+                   android:paddingBottom="10dp"
+                   android:paddingLeft="15dp"
+                   android:paddingRight="15dp"
+                   android:layout_marginEnd="10dp"
+                   android:layout_height="wrap_content"
+                   android:background="@drawable/radio_flat_selector"
+                   android:button="@android:color/transparent"
+                   android:text="@string/without_garden"
+                   android:textColor="@color/radio_flat_text_selector" />
+
+           </RadioGroup>
+
+           <TextView
+               android:layout_width="wrap_content"
+               android:gravity="center_vertical"
+               android:layout_height="wrap_content"
+               android:textSize="18sp"
+               android:padding="10dp"
+               android:textColor="#000"
+               android:id="@+id/hint4"
+               app:layout_constraintTop_toTopOf="@id/gender"
+               android:text="@string/gender"
+               app:layout_constraintBottom_toBottomOf="@id/gender"
+               app:layout_constraintLeft_toLeftOf="parent"
+               />
+
+           <RadioGroup
+               android:id="@+id/gender"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:layout_marginStart="8dp"
+               android:layout_marginLeft="8dp"
+               android:layout_marginTop="15dp"
+               android:layout_marginEnd="8dp"
+               android:layout_marginRight="8dp"
+               android:background="@drawable/edit_text_style"
+               android:padding="10dp"
+               android:gravity="center_horizontal"
+               android:orientation="horizontal"
+               app:layout_constraintEnd_toEndOf="parent"
+               app:layout_constraintLeft_toRightOf="@+id/hint4"
+               app:layout_constraintTop_toBottomOf="@id/background">
+
+
+               <RadioButton
+                   android:id="@+id/male"
+                   android:layout_width="100dp"
+                   android:paddingTop="10dp"
+                   android:paddingBottom="10dp"
+                   android:paddingLeft="15dp"
+                   android:paddingRight="15dp"
+                   android:gravity="center"
+                   android:layout_height="wrap_content"
+                   android:layout_marginEnd="10dp"
+                   android:background="@drawable/radio_flat_selector"
+                   android:button="@android:color/transparent"
+                   android:checked="true"
+                   android:text="@string/male"
+                   android:textColor="@color/radio_flat_text_selector" />
+
+               <RadioButton
+                   android:id="@+id/female"
+                   android:gravity="center"
+                   android:layout_width="100dp"
+                   android:paddingTop="10dp"
+                   android:paddingBottom="10dp"
+                   android:paddingLeft="15dp"
+                   android:paddingRight="15dp"
+                   android:layout_marginEnd="10dp"
+                   android:layout_height="wrap_content"
+                   android:background="@drawable/radio_flat_selector"
+                   android:button="@android:color/transparent"
+                   android:text="@string/female"
+                   android:textColor="@color/radio_flat_text_selector" />
+
+               <RadioButton
+                   android:id="@+id/other"
+                   android:gravity="center"
+                   android:layout_width="100dp"
+                   android:paddingTop="10dp"
+                   android:paddingBottom="10dp"
+                   android:paddingLeft="15dp"
+                   android:paddingRight="15dp"
+                   android:layout_height="wrap_content"
+                   android:background="@drawable/radio_flat_selector"
+                   android:button="@android:color/transparent"
+                   android:text="@string/other"
+                   android:textColor="@color/radio_flat_text_selector" />
+
+           </RadioGroup>
+
+           <TextView
+               android:layout_width="wrap_content"
+               android:gravity="center_vertical"
+               android:layout_height="wrap_content"
+               android:textSize="18sp"
+               android:padding="10dp"
+               android:textColor="#000"
+               android:id="@+id/hint5"
+               app:layout_constraintTop_toTopOf="@id/purchaseType"
+               android:text="@string/purchase_type"
+               app:layout_constraintBottom_toBottomOf="@id/purchaseType"
+               app:layout_constraintLeft_toLeftOf="parent"
+               />
+
+           <RadioGroup
+               android:id="@+id/purchaseType"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:layout_marginStart="8dp"
+               android:layout_marginLeft="8dp"
+               android:layout_marginTop="15dp"
+               android:layout_marginEnd="20sp"
+               android:background="@drawable/edit_text_style"
+               android:padding="10dp"
+               android:layout_marginRight="8dp"
+               android:gravity="center_horizontal"
+               android:orientation="horizontal"
+               app:layout_constraintRight_toRightOf="parent"
+               app:layout_constraintLeft_toRightOf="@+id/hint5"
+               app:layout_constraintTop_toBottomOf="@id/gender">
+
+
+               <RadioButton
+                   android:id="@+id/onRent"
+                   android:layout_width="100dp"
+
+                   android:paddingTop="10dp"
+                   android:paddingBottom="10dp"
+                   android:paddingLeft="15dp"
+                   android:paddingRight="15dp"
+                   android:gravity="center"
+                   android:layout_height="wrap_content"
+                   android:layout_marginEnd="10dp"
+                   android:background="@drawable/radio_flat_selector"
+                   android:button="@android:color/transparent"
+                   android:checked="true"
+                   android:text="@string/on_rent"
+                   android:textColor="@color/radio_flat_text_selector" />
+
+               <RadioButton
+                   android:id="@+id/ForPurchase"
+                   android:gravity="center"
+                   android:layout_width="120dp"
+                   android:paddingTop="10dp"
+                   android:paddingBottom="10dp"
+                   android:paddingLeft="15dp"
+                   android:paddingRight="15dp"
+                   android:layout_marginEnd="10dp"
+                   android:layout_height="wrap_content"
+                   android:background="@drawable/radio_flat_selector"
+                   android:button="@android:color/transparent"
+                   android:text="@string/for_purchase"
+                   android:textColor="@color/radio_flat_text_selector" />
+
+           </RadioGroup>
+
+           <EditText
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:padding="10dp"
+               android:layout_marginLeft="20sp"
+               app:layout_goneMarginTop="20sp"
+               android:layout_marginRight="20sp"
+               android:hint="@string/NumberOfRooms"
+               android:id="@+id/numRoom"
+               android:fontFamily="@font/baloo_bhai"
+               android:layout_marginTop="20dp"
+               android:digits="0123456789"
+               android:maxLength="10"
+               app:layout_constraintLeft_toLeftOf="parent"
+               app:layout_constraintRight_toRightOf="parent"
+               app:layout_constraintTop_toBottomOf="@id/purchaseType"
+               android:autofillHints=""
+               android:inputType="number" />
+
+           <EditText
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:padding="10dp"
+               android:layout_marginLeft="20sp"
+               app:layout_goneMarginTop="20sp"
+               android:layout_marginRight="20sp"
+               android:hint="@string/cost"
+               android:id="@+id/cost"
+               android:fontFamily="@font/baloo_bhai"
+               android:layout_marginTop="20dp"
+               android:digits="0123456789"
+               android:maxLength="10"
+               app:layout_constraintLeft_toLeftOf="parent"
+               app:layout_constraintRight_toRightOf="parent"
+               app:layout_constraintTop_toBottomOf="@id/numRoom"
+               android:autofillHints=""
+               android:inputType="number" />
+
+           <EditText
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:padding="10dp"
+               android:layout_marginLeft="20sp"
+               app:layout_goneMarginTop="20sp"
+               android:layout_marginRight="20sp"
+               android:hint="@string/phone_number_for_contact"
+               android:id="@+id/contactNum"
+               android:fontFamily="@font/baloo_bhai"
+               android:layout_marginTop="20dp"
+               android:digits="0123456789"
+               android:maxLength="10"
+               app:layout_constraintLeft_toLeftOf="parent"
+               app:layout_constraintRight_toRightOf="parent"
+               app:layout_constraintTop_toBottomOf="@id/cost"
+               android:autofillHints=""
+               android:inputType="number" />
+
+          <EditText
+              android:layout_width="match_parent"
+              android:layout_height="100dp"
+              android:inputType="textPostalAddress"
+              app:layout_constraintTop_toBottomOf="@id/contactNum"
+              android:background="@drawable/edit_text_style"
+              android:padding="15dp"
+              android:id="@+id/address_property"
+              android:layout_marginStart="20sp"
+              android:layout_marginEnd="20sp"
+              android:layout_marginTop="20sp"
+              android:fontFamily="@font/baloo_bhai"
+              android:hint="@string/enter_your_address"
+              android:textAlignment="center"
+              android:drawableEnd="@drawable/address_icon"
+              android:autofillHints="" />
+
+       </androidx.constraintlayout.widget.ConstraintLayout>
+
+   </androidx.core.widget.NestedScrollView>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:background="@drawable/btn_style2"
+        android:layout_marginBottom="10sp"
+        android:layout_marginLeft="20sp"
+        android:text="@string/next"
+        android:textColor="#fff"
+        android:fontFamily="@font/montserrat"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        android:id="@+id/next"
+        android:drawableEnd="@drawable/forward_arrow"
+        android:padding="10dp"
+        android:layout_marginRight="20sp"
+        />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

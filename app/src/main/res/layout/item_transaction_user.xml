@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="100dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardCornerRadius="10dp"
+    android:layout_margin="5dp"
+    app:cardElevation="2dp"
+    app:cardBackgroundColor="#fff"
+    >
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+        <LinearLayout
+            android:id="@+id/linear_layout_decor"
+            android:layout_width="15dp"
+            android:layout_height="match_parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:orientation="horizontal"
+            android:background="#ff3838"
+            />
+
+        <de.hdodenhof.circleimageview.CircleImageView
+
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_margin="5dp"
+            app:layout_constraintLeft_toRightOf="@id/linear_layout_decor"
+            app:layout_constraintTop_toTopOf="parent"
+            android:id="@+id/profile_pic_seller"
+            app:layout_constraintBottom_toBottomOf="@id/purchaseDate"
+            android:background="@drawable/demoimage"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/seller_name"
+            android:textStyle="normal"
+            android:textColor="#000"
+            android:textSize="18sp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="0dp"
+            android:fontFamily="@font/roboto_medium"
+            android:text="@string/hari_prasad_varma"
+            app:layout_constraintBottom_toTopOf="@id/purchaseDate"
+            app:layout_constraintLeft_toRightOf="@id/profile_pic_seller"
+            app:layout_constraintTop_toTopOf="parent"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/seller_name"
+            android:text="@string/_25th_aug_2020"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="0dp"
+            android:id="@+id/purchaseDate"
+            app:layout_constraintLeft_toRightOf="@id/profile_pic_seller"
+            app:layout_constraintBottom_toBottomOf="parent"
+            />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            android:text="@string/on_rent"
+            android:layout_marginStart="0dp"
+            android:textColor="#4b4b4b"
+            android:id="@+id/purchaseType_history"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:fontFamily="@font/roboto_medium"
+            android:layout_marginEnd="15dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.cardview.widget.CardView>
+

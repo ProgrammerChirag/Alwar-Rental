@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "835047527680",
+    "firebase_url": "https://alwarrenter.firebaseio.com",
+    "project_id": "alwarrenter",
+    "storage_bucket": "alwarrenter.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:835047527680:android:0e939214816e86550a8fe5",
+        "android_client_info": {
+          "package_name": "com.selflearn.alwarrenter"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "835047527680-qktiqn2qcrccpm33c2o24lq8mf2aeiuu.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.selflearn.alwarrenter",
+            "certificate_hash": "20c37cb90a9b557501761d1fffadf98f64c3104e"
+          }
+        },
+        {
+          "client_id": "835047527680-4tjkb5t4kaq0sk64feppgfskbhm0l2ga.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCeZZiKdfwjRHw7gSHNFcG0G-Dy_QbYs68"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "835047527680-4tjkb5t4kaq0sk64feppgfskbhm0l2ga.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

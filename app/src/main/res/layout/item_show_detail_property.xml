@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:padding="10dp"
+    android:orientation="vertical"
+    android:background="#F6F6F6"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/edit_text_style"
+        android:padding="15dp"
+        android:id="@+id/seller_name"
+        android:fontFamily="@font/baloo_bhai"
+        android:text="@string/seller_name_chirag_juneja"
+        />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/edit_text_style"
+        android:padding="15dp"
+        android:id="@+id/numBHKItem"
+        android:fontFamily="@font/baloo_bhai"
+        android:text="@string/_2_bhk_house"
+        />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/edit_text_style"
+        android:padding="15dp"
+        android:id="@+id/address_property_item"
+        android:fontFamily="@font/baloo_bhai"
+        android:text="@string/address_70_indra_colony_alwar_rajasthan"
+        />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/edit_text_style"
+        android:padding="15dp"
+        android:id="@+id/property_type_item"
+        android:fontFamily="@font/baloo_bhai"
+        android:text="@string/property_type_on_rent_property"
+        />
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/edit_text_style"
+        android:padding="15dp"
+        android:id="@+id/numRoomItem"
+        android:fontFamily="@font/baloo_bhai"
+        android:text="@string/number_of_rooms_3"
+        />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/edit_text_style"
+        android:padding="15dp"
+        android:id="@+id/backgroundItem"
+        android:fontFamily="@font/baloo_bhai"
+        android:text="@string/with_background_garden"
+        />
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/edit_text_style"
+        android:padding="15dp"
+        android:id="@+id/areaItem"
+        android:fontFamily="@font/baloo_bhai"
+        android:text="@string/on_road_area"
+        />
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/edit_text_style"
+        android:padding="15dp"
+        android:id="@+id/costItem"
+        android:fontFamily="@font/baloo_bhai"
+        android:text="@string/cost_5000"
+        />
+
+    <!--    NumRooms = numRooms;-->
+    <!--    Cost = cost;-->
+    <!--    NumBHk = numBHk;-->
+    <!--    Background = background;-->
+    <!--    Area = area;-->
+    <!--    GenderSeller = genderSeller;-->
+
+
+</LinearLayout>

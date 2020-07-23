@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+<de.hdodenhof.circleimageview.CircleImageView
+    android:layout_width="100dp"
+    android:layout_height="100dp"
+    android:id="@+id/profile_image"
+    app:layout_constraintLeft_toLeftOf="parent"
+    app:layout_constraintTop_toTopOf="parent"
+    android:layout_marginTop="40dp"
+    android:layout_marginStart="30sp"
+    android:layout_marginEnd="0dp"
+    android:src="@drawable/demoimage"
+    app:civ_border_width="1.2dp"
+    />
+
+    <EditText
+        android:autofillHints=""
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/profile_image"
+        android:padding="15dp"
+        android:id="@+id/name_account_holder"
+        android:fontFamily="@font/baloo_bhai"
+        android:background="@drawable/edit_text_style"
+        android:layout_marginTop="20dp"
+        android:hint="@string/enter_your_name"
+        android:layout_marginStart="20dp"
+        android:textColor="#1e272e"
+        android:layout_marginEnd="20dp"
+        android:inputType="textPersonName" />
+
+
+    <EditText
+        android:autofillHints=""
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:textColor="#1e272e"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/name_account_holder"
+        android:padding="15dp"
+        android:id="@+id/email"
+        android:fontFamily="@font/baloo_bhai"
+        android:background="@drawable/edit_text_style"
+        android:layout_marginTop="20dp"
+        android:hint="@string/enter_your_email"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:inputType="textEmailAddress" />
+
+    <EditText
+        android:autofillHints=""
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/email"
+        android:padding="15dp"
+        android:id="@+id/number"
+        android:digits="0123456789"
+        android:fontFamily="@font/baloo_bhai"
+        android:background="@drawable/edit_text_style"
+        android:layout_marginTop="20dp"
+        android:hint="@string/enter_mobile_number"
+        android:layout_marginStart="20dp"
+        android:textColor="#1e272e"
+        android:layout_marginEnd="100dp"
+        android:inputType="phone" />
+
+    <Button
+        android:textStyle="bold"
+        android:fontFamily="@font/montserrat"
+        android:layout_width="60dp"
+        android:layout_height="50dp"
+        android:background="@drawable/btn_style3"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/email"
+        android:layout_marginTop="20dp"
+        android:text="@string/verify"
+        android:layout_marginEnd="20dp"
+        android:id="@+id/verify_btn"
+        android:textColor="#fff"
+        android:textAllCaps="false"
+        />
+
+        <ImageButton
+            android:contentDescription="@string/todo"
+            android:layout_width="60dp"
+            android:layout_height="50dp"
+            android:background="@drawable/btn_style3"
+            android:visibility="invisible"
+            android:src="@drawable/ic_check"
+            android:padding="10dp"
+            android:id="@+id/done_btn"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/email"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="20dp"
+            />
+
+    <com.chaos.view.PinView
+        android:id="@+id/pin_view"
+        app:itemRadius="5dp"
+        android:layout_marginTop="20dp"
+        android:layout_width="wrap_content"
+        app:lineWidth="1dp"
+        android:layout_height="wrap_content"
+        android:inputType="text"
+        style="@style/PinWidget.PinView"
+        app:itemCount="6"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/number"
+        />
+
+    <EditText
+        android:autofillHints=""
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:drawableEnd="@drawable/address_icon"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:textColor="#1e272e"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/pin_view"
+        android:padding="15dp"
+        android:id="@+id/address"
+        android:fontFamily="@font/baloo_bhai"
+        android:background="@drawable/edit_text_style"
+        android:layout_marginTop="20dp"
+        android:hint="@string/enter_your_address"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:inputType="textPostalAddress" />
+
+    <ImageButton
+        android:contentDescription="@string/todo"
+        android:id="@+id/backBtn_to_dashboard"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_margin="20dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:background="@drawable/btn_style5"
+        app:layout_constraintRight_toLeftOf="@id/saveBtn"
+        android:src="@drawable/ic_back_arrow_new"
+        />
+    <Button
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:text="@string/save"
+        android:background="@drawable/btn_style3"
+        android:textColor="#fff"
+        android:textSize="15sp"
+        android:id="@+id/saveBtn"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_margin="20dp"
+        app:layout_constraintLeft_toRightOf="@id/backBtn_to_dashboard"
+        />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

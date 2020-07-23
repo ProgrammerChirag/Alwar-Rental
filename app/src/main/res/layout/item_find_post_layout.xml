@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+
+    app:cardBackgroundColor="#FFDD59"
+    app:cardCornerRadius="5dp"
+    android:layout_marginTop="10dp"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:id="@+id/card"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="140dp"
+            android:id="@+id/cl"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            >
+            <LinearLayout
+                android:layout_width="10dp"
+                android:layout_height="match_parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                android:layout_marginStart="20sp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:layout_marginEnd="0dp"
+                android:id="@+id/ll"
+                android:background="#FF8181"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:orientation="horizontal" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="@id/ll"
+                android:layout_marginStart="15dp"
+                android:textColor="#3C40C6"
+                android:textSize="18sp"
+                app:layout_constraintBottom_toTopOf="@id/nuMRoom_text"
+                android:fontFamily="@font/baloo_bhai"
+                android:text="@string/_1_bhk_house"
+                android:id="@+id/nuMBHK_text"
+                app:layout_constraintLeft_toRightOf="@+id/ll"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/nuMBHK_text"
+                android:layout_marginStart="15dp"
+                android:textColor="#3C40C6"
+                android:textSize="18sp"
+                android:fontFamily="@font/baloo_bhai"
+                app:layout_constraintBottom_toTopOf="@id/numImages"
+                android:text="@string/_1_bhk_house"
+                android:id="@+id/nuMRoom_text"
+                app:layout_constraintLeft_toRightOf="@+id/ll"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/nuMRoom_text"
+                android:layout_marginStart="15dp"
+                android:textColor="#3C40C6"
+                app:layout_constraintBottom_toBottomOf="@id/ll"
+                android:textSize="18sp"
+                android:fontFamily="@font/baloo_bhai"
+                android:text="@string/_1_bhk_house"
+                android:id="@+id/numImages"
+                app:layout_constraintLeft_toRightOf="@+id/ll"
+                />
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="@id/ll"
+                android:layout_marginStart="15dp"
+                android:textColor="#3C40C6"
+                app:layout_constraintBottom_toBottomOf="@id/ll"
+                android:textSize="18sp"
+                android:fontFamily="@font/baloo_bhai"
+                android:layout_marginEnd="20sp"
+                android:text="@string/more"
+                android:id="@+id/moreBtn"
+                app:layout_constraintRight_toRightOf="parent"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:textColor="#5659C1"
+                app:layout_constraintBottom_toBottomOf="@id/ll"
+                android:textSize="15sp"
+                android:fontFamily="@font/baloo_bhai"
+                android:layout_marginEnd="20sp"
+                android:text="@string/_2020_07_13_03_08_32_am"
+                android:id="@+id/Date"
+                app:layout_constraintRight_toRightOf="parent"
+                />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.cardview.widget.CardView>

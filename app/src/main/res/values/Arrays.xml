@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="profssion">
+        <item>"Student"</item>
+        <item>"Teacher"</item>
+        <item>"business"</item>
+        <item>"job"</item>
+    </string-array>
+
+    <string-array name="married_status">
+        <item>"single"</item>
+        <item>"married</item>
+    </string-array>
+
+    <string-array name="gender">
+        <item>"Male"</item>
+        <item>"Female"</item>
+    </string-array>
+
+</resources>
