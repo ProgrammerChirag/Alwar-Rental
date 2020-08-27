@@ -83,7 +83,9 @@ public class FindPropertyAdapter extends RecyclerView.Adapter<FindPropertyAdapte
                     intent.putExtra(String.valueOf(R.string.background) , list.get(position).getBackground());
                     intent.putExtra(String.valueOf(R.string.cost) , list.get(position).getCost());
                     intent.putExtra(String.valueOf(R.string.numRooms) , list.get(position).getNumRooms());
-
+                    intent.putExtra(String.valueOf(R.string.KEY_USER_ID) , list.get(position).getSellerId());
+                    intent.putExtra(String.valueOf(R.id.cost) , list.get(position).getCost());
+                    intent.putExtra(String.valueOf(R.id.purchaseDate) , list.get(position).getDateUpload());
                     context.startActivity(intent);
                 }
             });

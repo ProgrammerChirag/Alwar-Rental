@@ -1,5 +1,5 @@
-<resources>
-    <string name="app_name">AlwarRenter</string>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="app_name">Alwar Rental</string>
     <string name="login">Login</string>
     <string name="enter_mobile_number">Enter Mobile number</string>
     <string name="get_otp">get OTP</string>
@@ -64,7 +64,7 @@
     <string name="KEY_USER_ID">userID</string>
     <string name="alwar_rental">Alwar Rental</string>
     <string name="previous_purchase">Previous Purchase</string>
-    <string name="property_for_rent">Find Property For Rent</string>
+    <string name="property_for_rent">Property For Rent</string>
     <string name="purchase_property">Purchase Property</string>
     <string name="your_requests">Your Requests</string>
     <string name="transaction_history">Transaction History</string>
@@ -89,7 +89,7 @@
     <string name="purchase_request">Purchase Request</string>
     <string name="status_still_pending">Status : Still pending</string>
     <string name="status_approved">Status : Approved</string>
-    <string name="more">More...</string>
+    <string name="more">More…</string>
     <string name="use_my_current_location">Choose location from map</string>
     <string name="or_you_can_fill_your_location_from_here">or you can fill your location from here</string>
     <string name="pincode">pincode</string>
@@ -141,7 +141,7 @@
     <string name="DATE_UPLOAD">DateUpload</string>
     <string name="camera">camera</string>
     <string name="_1_bhk_house">1 BHK House</string>
-    <string name="_2020_07_13_03_08_32_am">2020-07-13 03:08:32 AM</string>
+    <string name="_2020_07_13_03_08_32_am" tools:ignore="TypographyDashes">2020–07-13 03:08:32 AM</string>
     <string name="no_customer_found">No Customer Found</string>
     <string name="no_data_found">No Data Found</string>
     <string name="hari_prasad_varma">Hari prasad varma</string>
@@ -155,4 +155,20 @@
     <string name="on_road_area">On road Area</string>
     <string name="cost_5000">Cost:5000</string>
     <string name="programmer_chirag">Programmer Chirag</string>
+    <string name="name_chirag_juneja">Name: chirag juneja</string>
+    <string name="reason_for_rent_purpose">Reason : For rent purpose</string>
+    <string name="location_109_indra_colony_alwar_rajasthan">Location : 109 indra colony , alwar rajasthan</string>
+    <string name="budget_5000">Budget : 5000</string>
+    <string name="profession_student">Profession : student</string>
+    <string name="married_status_single">Married Status : single</string>
+    <string name="request_type_on_rent">Request Type : On Rent</string>
+    <string name="number_rooms_5">Number Rooms : 5</string>
+    <string name="remove">remove</string>
+    <string name="accept">Accept</string>
+    <string name="buy_property">Buy Property / Take On Rent</string>
+    <string name="sell_your_property">Sell Your Property / Give on Rent</string>
+    <string name="switchh">Switch</string>
+    <string name="interested_properties">Intrested Properties</string>
+    <string name="call_us">Call Us</string>
+    <string name="continue_as">continue as</string>
 </resources>

@@ -11,19 +11,24 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-    <uses-feature android:name="android.hardware.camera"
+
+    <uses-feature
+        android:name="android.hardware.camera"
         android:required="true" />
 
-    <uses-permission android:name="android.permission.CAMERA"/>
+    <uses-permission android:name="android.permission.CAMERA" />
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:fullBackupContent="@xml/backup_descriptor"
+        android:icon="@mipmap/ic_icon_alwar_rental"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@mipmap/ic_icon_alwar_rental_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme"
-        android:fullBackupContent="@xml/backup_descriptor">
+        android:theme="@style/AppTheme">
+        <activity android:name="Admin.ListPropertiesActivity">
+        </activity>
+        <activity android:name="Admin.ActivityRequestForAdminSide"></activity>
         <activity android:name="Seller.ActivityPostNewProperty" />
 
         <meta-data
@@ -41,52 +46,42 @@
         <activity
             android:name="User.BottomNavActivity"
             android:exported="true" />
-        <activity
-            android:name="User.UserDashBoardHomeActivity"
-            android:theme="@style/DashBoard" />
-        <activity android:name="Admin.AdminLoginActivity" />
-        <activity
-            android:name="User.UserProfileActivity"
-            android:theme="@style/DashBoard" />
-        <activity android:name="Seller.ActivitySetting"/>
+        <activity android:name="Admin.AdminLoginActivity" >
+
+
+
+        </activity>
+
+        <activity android:name="Seller.ActivitySetting" />
         <activity android:name="Seller.SellerLoginActivity" />
         <activity android:name="FirebaseConnectivity.MobileAuthenticationActivity" />
         <activity android:name="User.UserLoginActivity" />
         <activity android:name="User.ActivityUserRequests" />
         <activity android:name="User.UserSignUpActivity" />
-        <activity android:name="User.ShowDetailsOfProperty"
-            android:theme="@style/AppTheme2"
-            >
+        <activity
+            android:name="User.ShowDetailsOfProperty"
+            android:theme="@style/AppTheme2" />
+        <activity android:name="Admin.AdminDashBoardActivity">
 
-        </activity>
-        <activity android:name="Admin.AdminDashBoardActivity" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity android:name="Seller.ActivityAfterMobileAuth" />
         <activity android:name="AddressAndMap.TakingAddressActivity" />
+        <activity android:name="Admin.ChangeAdminIDAndPassword"/>
         <activity android:name="Seller.SellerLoginMobileAuth" />
         <activity android:name="Seller.SellerSignUpActivity" />
         <activity android:name="User.ChangePasswordActivity" />
-        <activity android:name="AccountHandler.ActivityChooseLoginType"/>
+        <activity android:name="AccountHandler.ActivityChooseLoginType" />
         <activity android:name="User.ActivitySetting" />
         <activity android:name="User.ActivityUserEditProfile" />
         <activity android:name=".ChooseLoginTypeActivity" />
         <activity android:name="User.CongoUI" />
-        <activity android:name="Seller.UploadPropertyImage"/>
-        <activity android:name="Seller.ActivityFindRentalProperty"/>
-        <activity android:name="Seller.MyRequestActivitySeller"/>
-        <activity android:name="Admin.ActivityListUsers"/>
-        <activity android:name="User.SelectAnyOption" />
+        <activity android:name="Seller.UploadPropertyImage" />
+        <activity android:name="Seller.ActivityFindRentalProperty" />
+        <activity android:name="Admin.ActivityListUsers" />
         <activity android:name="Seller.SellerDashboardActivity" />
         <activity android:name="Helper.ForgotPasswordHelper" />
         <activity android:name="Seller.MyCustomerActivity" />
-        <activity android:name="Seller.YourRequestsActivity" />
         <activity android:name="Seller.MyPostActivity" />
-        <activity android:name="Seller.ActivitySellerEditProfile" />
         <activity android:name="FirebaseConnectivity.ActivityAfterMobileAuth" />
         <activity android:name=".ActivityChooseLoginMethod" />
         <activity
@@ -99,8 +94,12 @@
             tools:ignore="Instantiatable" />
         <activity
             android:name=".MainActivity"
-            android:theme="@style/splash">
+            android:theme="@style/splash" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
 
         <meta-data

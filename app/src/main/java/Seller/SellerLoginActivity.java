@@ -29,6 +29,7 @@ import com.google.firebase.database.ValueEventListener;
 import com.selflearn.alwarrenter.ChooseLoginTypeActivity;
 import com.selflearn.alwarrenter.R;
 
+import AccountHandler.ActivityChooseLoginType;
 import ModelClasses.SellerData;
 import Utils.SettingMemoryData;
 
@@ -195,14 +196,15 @@ public class SellerLoginActivity extends AppCompatActivity {
     private void changeActivityToDashBoard() {
 
         customProgressDialog.dismissDialog();
-        new CustomDialogMaker(SellerLoginActivity.this).createAndShowDialogSuccess("login success" , "seller");
+        finish();
+        startActivity(new Intent(SellerLoginActivity.this , ChooseLoginTypeActivity.class));
     }
 
     @Override
     public void onBackPressed() {
 
         finish();
-        startActivity(new Intent(SellerLoginActivity.this, ChooseLoginTypeActivity.class));
+        startActivity(new Intent(SellerLoginActivity.this, ActivityChooseLoginType.class));
 
     }
 

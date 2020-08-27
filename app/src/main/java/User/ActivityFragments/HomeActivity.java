@@ -86,7 +86,6 @@ public class HomeActivity extends Fragment {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for (DataSnapshot snapshot1 : snapshot.getChildren())
                 {
-
                     if (transactionDataList != null) {
 
                         transactionDataList.add(snapshot1.getValue(TransactionData.class));
@@ -109,7 +108,7 @@ public class HomeActivity extends Fragment {
             }
         };
 
-        databaseReference = databaseReference.child("UserTransactionData");
+            databaseReference = databaseReference.child("MyTransaction");
 
         String userId = new SettingMemoryData(context).getSharedPrefString(String.valueOf(R.string.KEY_USER_ID));
         if (userId != null)

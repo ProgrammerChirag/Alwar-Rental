@@ -16,9 +16,6 @@ public class ViewPagerAdapter extends PagerAdapter {
     private Context context;
     private List<Bitmap> bitmapList;
 
-    public ViewPagerAdapter()
-    {}
-
     public ViewPagerAdapter(Context context , List<Bitmap> bitmaps)
     {
         this.context = context;

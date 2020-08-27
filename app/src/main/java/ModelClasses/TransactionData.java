@@ -11,6 +11,9 @@ public class TransactionData {
     String AmountPaid;
     String Date ;
 
+    public TransactionData()
+    {}
+
     public TransactionData(String address, String sellerName, String sellerPhoneNumber, String sellerID, String transactionMedium, String purchaseType, String amountPaid, String date) {
         Address = address;
         SellerName = sellerName;

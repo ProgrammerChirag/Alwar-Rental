@@ -32,7 +32,6 @@ import com.selflearn.alwarrenter.R;
 import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 
-import ModelClasses.SellerData;
 import ModelClasses.UserData;
 import Utils.CustomDialogMaker;
 import Utils.CustomProgressDialog;
@@ -66,6 +65,7 @@ public class SellerLoginMobileAuth extends AppCompatActivity {
     }
 
     private void setListener() {
+
         getOTPBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -95,6 +95,11 @@ public class SellerLoginMobileAuth extends AppCompatActivity {
         firebaseAuthSettings.setAutoRetrievedSmsCodeForPhoneNumber("+919001851307" , "146752");
         firebaseAuthSettings.setAutoRetrievedSmsCodeForPhoneNumber("+919982917736","917736");
         firebaseAuthSettings.setAutoRetrievedSmsCodeForPhoneNumber("+918764498357" , "917736");
+        firebaseAuthSettings.setAutoRetrievedSmsCodeForPhoneNumber("+917976330044" , "991245");
+        //firebaseAuthSettings.setAutoRetrievedSmsCodeForPhoneNumber("+918824135146" , "998291" );
+        firebaseAuthSettings.setAutoRetrievedSmsCodeForPhoneNumber("+919413609362" , "135790");
+        firebaseAuthSettings.setAutoRetrievedSmsCodeForPhoneNumber("+917985025413" , "073527");
+        firebaseAuthSettings.setAutoRetrievedSmsCodeForPhoneNumber("+919694533137" , "867542");
 
         PhoneAuthProvider.OnVerificationStateChangedCallbacks mcallbacks = new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
             @Override
@@ -112,6 +117,7 @@ public class SellerLoginMobileAuth extends AppCompatActivity {
 //                code = credential.getSmsCode();
 
                 if(phoneAuthCredential.getSmsCode() == null){
+
 //                    customProgressDialog.startLoadingDailog();
                     signInWithCredentials(phoneAuthCredential);
                 }

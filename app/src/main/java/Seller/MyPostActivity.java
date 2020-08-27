@@ -2,6 +2,8 @@ package Seller;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -28,6 +30,7 @@ public class MyPostActivity extends AppCompatActivity {
 
     TextView textView;
     RecyclerView recyclerView;
+    ImageButton backBtn;
     private List<PropertyData> propertyDataList;
 
     @SuppressLint("SetTextI18n")
@@ -39,6 +42,17 @@ public class MyPostActivity extends AppCompatActivity {
         textView = findViewById(R.id.text);
         textView.setText("My Posts");
         propertyDataList = new ArrayList<>();
+
+        backBtn = findViewById(R.id.backBtn);
+        backBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                backBtn.setClickable(false);
+                onBackPressed();
+
+            }
+        });
 
         recyclerView = findViewById(R.id.recycler_view_request_history);
         recyclerView.setHasFixedSize(true);

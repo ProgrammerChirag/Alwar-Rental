@@ -42,22 +42,21 @@ public class AdminDashBoardActivity extends AppCompatActivity {
         listRequest.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                startActivity(new Intent(AdminDashBoardActivity.this , ActivityRequestForAdminSide.class));
             }
         });
 
         listProperty.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-
+                startActivity(new Intent(AdminDashBoardActivity.this , ListPropertiesActivity.class));
             }
         });
 
         ChangeAdminPassword.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                startActivity(new Intent(AdminDashBoardActivity.this , ChangeAdminIDAndPassword.class));
             }
         });
     }

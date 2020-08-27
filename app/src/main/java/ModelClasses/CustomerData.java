@@ -3,7 +3,11 @@ package ModelClasses;
 public class CustomerData {
     String name , email , phone , address ,requestType , Date , UserID;
 
+    public CustomerData()
+    {}
+
     public CustomerData(String name, String email, String phone, String address, String requestType, String date, String userID) {
+
         this.name = name;
         this.email = email;
         this.phone = phone;

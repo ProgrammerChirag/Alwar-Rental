@@ -6,10 +6,8 @@ import android.content.pm.PackageManager;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
-import android.location.LocationManager;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
@@ -40,7 +38,6 @@ import java.util.Objects;
 public class MapActivity extends AppCompatActivity implements OnMapReadyCallback {
 
     private static final String TAG = "MapActivityProgress";
-    private static final int ERROR_DIALOG_REQUEST = 9001;
     private static final int LOCATION_PERMISSION_REQUEST_CODE = 1234;
 
     Button Done;
@@ -49,12 +46,11 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
     private static final String COARSE_LOCATION = Manifest.permission.ACCESS_COARSE_LOCATION;
 
     // variables
-    private boolean IS_PERMISSON_GRANTED = false;
+    private boolean IS_PERMISSION_GRANTED = false;
     private GoogleMap map;
-    private FusedLocationProviderClient fusedLocationProviderClient;
     private float defaultZoom = 15f;
     LatLng latLng_data;
-    private String markkedAddress ;
+    private String markedAddress;
     private Marker marker;
 
     @Override
@@ -67,7 +63,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         Done.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(markkedAddress != null && latLng_data != null)
+                if(markedAddress != null && latLng_data != null)
                 {
                     Intent data = new Intent();
                     data.putExtra("lat", String.valueOf(latLng_data.latitude));
@@ -94,7 +90,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         };
         if (ContextCompat.checkSelfPermission(this.getApplicationContext(), FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
             if (ContextCompat.checkSelfPermission(this.getApplicationContext(), COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
-                IS_PERMISSON_GRANTED = true;
+                IS_PERMISSION_GRANTED = true;
                 initMap();
             } else {
                 ActivityCompat.requestPermissions(this,
@@ -112,25 +108,22 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 
         Log.d(TAG, "onRequestPermissionsResult: Called");
 
-        IS_PERMISSON_GRANTED = false;
-        switch (requestCode) {
-            case LOCATION_PERMISSION_REQUEST_CODE:
-                if (grantResults.length > 0) {
-                    for (int i = 0; i < grantResults.length; i++) {
-                        if (grantResults[i] != PackageManager.PERMISSION_GRANTED) {
-                            IS_PERMISSON_GRANTED = false;
-                            Log.d(TAG, "onRequestPermissionsResult: permission failed");
-                            return;
-                        }
+        IS_PERMISSION_GRANTED = false;
+        if (requestCode == LOCATION_PERMISSION_REQUEST_CODE) {
+            if (grantResults.length > 0) {
+                for (int grantResult : grantResults) {
+                    if (grantResult != PackageManager.PERMISSION_GRANTED) {
+                        Log.d(TAG, "onRequestPermissionsResult: permission failed");
+                        return;
                     }
-                    IS_PERMISSON_GRANTED = true;
-                    Log.d(TAG, "onRequestPermissionsResult: permission granted");
-
-                    // initialize our map .
-
-                    initMap();
                 }
-                break;
+                IS_PERMISSION_GRANTED = true;
+                Log.d(TAG, "onRequestPermissionsResult: permission granted");
+
+                // initialize our map .
+
+                initMap();
+            }
         }
     }
 
@@ -162,7 +155,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                     if (addresses.size() > 0)
                     {
                         marker =map.addMarker(new MarkerOptions().position(latLng).title(addresses.get(0).getAddressLine(0)));
-                        markkedAddress = addresses.get(0).getAddressLine(0);
+                        markedAddress = addresses.get(0).getAddressLine(0);
                     }
                 } catch (IOException e) {
                     e.printStackTrace();
@@ -175,7 +168,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         Toast.makeText(getApplicationContext(), "here is your location ", Toast.LENGTH_LONG).show();
         Log.d(TAG, "onMapReady: Map is fully ready");
 
-        if (IS_PERMISSON_GRANTED) {
+        if (IS_PERMISSION_GRANTED) {
             getDevicesLocation();
             if (ActivityCompat.checkSelfPermission(this,
                     Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
@@ -199,10 +192,10 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
     private void getDevicesLocation(){
         Log.d(TAG, "getDevicesLocation: getting devices current location");
 
-        fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
+        FusedLocationProviderClient fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
 
         try {
-            if (IS_PERMISSON_GRANTED)
+            if (IS_PERMISSION_GRANTED)
             {
                 final Task<Location> location = fusedLocationProviderClient.getLastLocation();
                 location.addOnCompleteListener(new OnCompleteListener() {
@@ -220,7 +213,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                                 if (addresses.size() > 0)
                                 {
                                     marker =map.addMarker(new MarkerOptions().position(new LatLng(currentLocation.getLatitude(), currentLocation.getLongitude())).title(addresses.get(0).getAddressLine(0)));
-                                    markkedAddress = addresses.get(0).getAddressLine(0);
+                                    markedAddress = addresses.get(0).getAddressLine(0);
                                 }
                             } catch (IOException e) {
                                 e.printStackTrace();

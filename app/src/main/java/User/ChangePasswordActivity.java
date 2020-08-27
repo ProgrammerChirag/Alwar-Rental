@@ -80,7 +80,7 @@ public class ChangePasswordActivity extends AppCompatActivity {
 
         new_password = findViewById(R.id.new_pass);
         confirm_new_password = findViewById(R.id.new_pass_confirm);
-        change = findViewById(R.id.chnage);
+        change = findViewById(R.id.change);
         customProgressDialog = new CustomProgressDialog(ChangePasswordActivity.this);
 
         change.setOnClickListener(new View.OnClickListener() {

@@ -5,6 +5,7 @@ import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -18,6 +19,8 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.ramotion.cardslider.CardSliderLayoutManager;
+import com.ramotion.cardslider.CardSnapHelper;
 import com.selflearn.alwarrenter.R;
 
 import java.util.ArrayList;
@@ -33,6 +36,7 @@ public class ActivityFindRentalProperty extends AppCompatActivity {
 
     TextView textView ;
     RecyclerView recyclerView;
+    ImageButton backBtn;
     List<PropertyData> requestDataList ;
     List<PropertyData> propertyDataList ;
     TextView textView1;
@@ -113,6 +117,18 @@ public class ActivityFindRentalProperty extends AppCompatActivity {
 
         textView = findViewById(R.id.text);
         textView.setText("properties for rent");
+
+        backBtn = findViewById(R.id.backBtn);
+        backBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                backBtn.setClickable(false);
+                onBackPressed();
+
+            }
+        });
+
         requestDataList = new ArrayList<>();
         textView1 = findViewById(R.id.text2);
         bitmapList = new ArrayList<>();
@@ -123,6 +139,8 @@ public class ActivityFindRentalProperty extends AppCompatActivity {
 
         recyclerView = findViewById(R.id.recycler_view_request_history);
         recyclerView.setLayoutManager(new LinearLayoutManager(ActivityFindRentalProperty.this , RecyclerView.VERTICAL , false) );
+//        recyclerView.setLayoutManager(new CardSliderLayoutManager(10 , 1000 , 20));
+//        new CardSnapHelper().attachToRecyclerView(recyclerView);
         recyclerView.setHasFixedSize(true);
 
         Log.d(TAG, "onCreate: "+propertyType);
@@ -143,6 +161,7 @@ public class ActivityFindRentalProperty extends AppCompatActivity {
 
     @Override
     protected void onDestroy() {
+
         customProgressDialog.dismissDialog();
         customProgressDialog = null;
         super.onDestroy();

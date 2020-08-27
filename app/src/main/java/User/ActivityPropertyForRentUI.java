@@ -23,6 +23,7 @@ import AddressAndMap.TakingAddressActivity;
 import FirebaseConnectivity.UploadData;
 import ModelClasses.RequestData;
 import Utils.CustomProgressDialog;
+import Utils.SettingMemoryData;
 
 public class ActivityPropertyForRentUI extends AppCompatActivity {
 
@@ -34,13 +35,13 @@ public class ActivityPropertyForRentUI extends AppCompatActivity {
     Double  Budget;
     Integer NumRoom ;
     ImageView backBtn;
+    String Cost , dateUpload;
+    String sellerID;
     String  Profession , Gender , Married_Status ;
     String numRooms , Address;
 
-
     boolean IS_VALIDATED = false;
     private int request_code = 1;
-
 
     @Override
     public void onBackPressed() {
@@ -57,7 +58,9 @@ public class ActivityPropertyForRentUI extends AppCompatActivity {
         setContentView(R.layout.activity_user_form_u_i);
 
         requestType = getIntent().getStringExtra("requestType");
-
+        sellerID = getIntent().getStringExtra(String.valueOf(R.string.KEY_USER_ID));
+        Cost = getIntent().getStringExtra(String.valueOf(R.id.cost));
+        dateUpload = getIntent().getStringExtra(String.valueOf(R.id.purchaseDate));
         if (requestType != null)
         Log.d("requestType",requestType);
 
@@ -93,7 +96,7 @@ public class ActivityPropertyForRentUI extends AppCompatActivity {
             public void onClick(View v) {
 
                 if(validateForm()){
-                    sendDataToDataBase(requestType);
+                    sendDataToDataBase(requestType , sellerID);
                     changeActivityToCongratulationPage();
                 }
             }
@@ -118,14 +121,16 @@ public class ActivityPropertyForRentUI extends AppCompatActivity {
         },3000);
     }
 
-    private void sendDataToDataBase(String requestType) {
+    private void sendDataToDataBase(String requestType, String sellerID) {
 
         //sending data to the database.
         UploadData uploadData = new UploadData(ActivityPropertyForRentUI.this);
         RequestData requestData = new RequestData(Name , Reason , String.valueOf(NumRoom) , Location , String.valueOf(Budget) ,
-                                                Profession , Married_Status , Gender , requestType , "pending");
+                                                Profession , Married_Status , Gender , requestType , "pending" , Cost , dateUpload , sellerID ,
+                new SettingMemoryData(ActivityPropertyForRentUI.this).getSharedPrefString(String.valueOf(R.string.KEY_USER_ID))
+                );
 
-        uploadData.UploadDataRequest(requestData);
+        uploadData.UploadDataRequest(requestData, sellerID);
 
 
     }
@@ -187,6 +192,7 @@ public class ActivityPropertyForRentUI extends AppCompatActivity {
     private void setSpinner() {
 
         spinner_profession.setPrompt("choose your profession");
+
         ArrayAdapter<CharSequence> profession_array_adapter = ArrayAdapter.createFromResource(this,
                 R.array.profssion ,android.R.layout.simple_spinner_item
                 );
@@ -286,3 +292,5 @@ public class ActivityPropertyForRentUI extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
     }
 }
+
+// phone number :-

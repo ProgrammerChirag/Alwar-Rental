@@ -1,9 +1,11 @@
 package com.selflearn.alwarrenter;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 import android.content.Intent;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -36,11 +38,12 @@ public class ChooseLoginTypeActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                Seller.setBackground(getDrawable(R.drawable.btn_style2));
+                Seller.setBackground(getDrawable(R.drawable.btn_style3));
                 Seller.setTextColor(Color.WHITE);
                 User.setBackground(getDrawable(R.drawable.btn_style6));
                 User.setTextColor(Color.BLACK);
-
+                Seller.setCompoundDrawablesWithIntrinsicBounds(null , null , ContextCompat.getDrawable(ChooseLoginTypeActivity.this,  R.drawable.ic_check) , null);
+                User.setCompoundDrawablesWithIntrinsicBounds(null , null , null , null);
                 USER_SELECTED=false;
             }
         });
@@ -52,9 +55,10 @@ public class ChooseLoginTypeActivity extends AppCompatActivity {
                 USER_SELECTED = true;
                 Seller.setBackground(getDrawable(R.drawable.btn_style6));
                 Seller.setTextColor(Color.BLACK);
-                User.setBackground(getDrawable(R.drawable.btn_style2));
+                User.setBackground(getDrawable(R.drawable.btn_style3));
                 User.setTextColor(Color.WHITE);
-
+                User.setCompoundDrawablesWithIntrinsicBounds(null , null , ContextCompat.getDrawable(ChooseLoginTypeActivity.this,  R.drawable.ic_check) , null);
+                Seller.setCompoundDrawablesWithIntrinsicBounds(null , null , null , null);
             }
         });
 

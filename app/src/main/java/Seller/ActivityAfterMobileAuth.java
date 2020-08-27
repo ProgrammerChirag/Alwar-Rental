@@ -58,7 +58,6 @@ public class ActivityAfterMobileAuth extends AppCompatActivity {
     private ValueEventListener listener = new ValueEventListener() {
         @Override
         public void onDataChange(@NonNull DataSnapshot snapshot) {
-            SellerData sellerData;
             final List<UserData> sellerDataList = new ArrayList<>();
 
             for(DataSnapshot snapshot1 : snapshot.getChildren())

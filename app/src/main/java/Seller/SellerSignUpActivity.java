@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -29,11 +30,12 @@ import com.selflearn.alwarrenter.R;
 import java.util.ArrayList;
 import java.util.List;
 
-import ModelClasses.SellerData;
-import Utils.SettingMemoryData;
 import Helper.UserSignUpHelper;
+import ModelClasses.SellerData;
+import ModelClasses.UserData;
 import Utils.CustomDialogMaker;
 import Utils.CustomProgressDialog;
+import Utils.SettingMemoryData;
 
 public class SellerSignUpActivity extends AppCompatActivity {
 
@@ -47,9 +49,11 @@ public class SellerSignUpActivity extends AppCompatActivity {
 
     boolean IS_FORM_VALIDATED = false;
     SellerData sellerData;
+    UserData userData;
     boolean IS_EMAIL_VALIDATED = false;
     boolean IS_USERNAME_AVAILABLE = true;
     DatabaseReference databaseReference;
+    EditText phone;
 
     String Name , Email , Password , Username;
 
@@ -111,7 +115,6 @@ public class SellerSignUpActivity extends AppCompatActivity {
 
     private static final String TAG = "SellerSignUpActivity";
 
-
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -144,7 +147,7 @@ public class SellerSignUpActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                if(validateForm()) {
+                if(validateForm()  && phone.getText().toString().length() == 10) {
                     customProgressDialog.startLoadingDailog();
                     isUserNameAvailable();
                     // removing the error from edit text.
@@ -153,6 +156,7 @@ public class SellerSignUpActivity extends AppCompatActivity {
 
                 }else{
                     Log.d(TAG, "setListener: form not validated");
+                    Toast.makeText(getApplicationContext() , "please fill all the details." , Toast.LENGTH_LONG).show();
                 }
 
             }
@@ -216,6 +220,7 @@ public class SellerSignUpActivity extends AppCompatActivity {
     }
 
     private void verifyEmailAndPassWord() {
+
         Email = EMAIL.getText().toString().trim();
         Password  = PASSWORD.getText().toString().trim();
 
@@ -285,9 +290,8 @@ public class SellerSignUpActivity extends AppCompatActivity {
                 IS_FORM_VALIDATED = true;
 
         }
-
-
         return  IS_FORM_VALIDATED;
+
     }
 
     private boolean isEmailValid(String email){
@@ -306,6 +310,7 @@ public class SellerSignUpActivity extends AppCompatActivity {
     }
 
     private void findID() {
+        phone = findViewById(R.id.Phone_number);
         login_account_button=findViewById(R.id.login_acc_button_seller);
         U_ID= findViewById(R.id.user_id);
         EMAIL = findViewById(R.id.seller_email);
@@ -358,6 +363,22 @@ public class SellerSignUpActivity extends AppCompatActivity {
         sellerData.setUsername(Username);
         sellerData.setNumberOfPost("0");
         sellerData.setNumOfCustomer("0");
+        sellerData.setNumber(phone.getText().toString());
+
+        userData = new UserData();
+
+        userData.setName(Name);
+        userData.setNumber_of_purchase("0");
+        userData.setNumber_of_requests("0");
+        userData.setUsername(Username);
+        userData.setPassword(Password);
+        userData.setAddress("");
+        userData.setEmail(Email);
+        userData.setNumber("");
+        userData.setNumber(phone.getText().toString());
+
+
+
 
         isEmailExist();
 
@@ -392,11 +413,6 @@ public class SellerSignUpActivity extends AppCompatActivity {
             @Override
             public void onSuccess(Void aVoid) {
 
-                Log.d(TAG, "onSuccess: all things are set");
-                Log.d(TAG, "onSuccess: data uploaded to database ");
-                Log.d(TAG, "onSuccess: username: "+sellerData.getUsername());
-
-                saveSharedPreferences();
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
@@ -404,6 +420,25 @@ public class SellerSignUpActivity extends AppCompatActivity {
                 Log.d(TAG, "onFailure: failed");
                 Log.d(TAG, "onFailure: "+e.getMessage() + " " +e.getClass().getName());
                 customProgressDialog.dismissDialog();
+            }
+        });
+
+        databaseReference = FirebaseDatabase.getInstance().getReference("UserData");
+        databaseReference.child(userData.getUsername()).setValue(userData).addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void aVoid) {
+
+                Log.d(TAG, "onSuccess: all things are set");
+                Log.d(TAG, "onSuccess: data uploaded to database ");
+                Log.d(TAG, "onSuccess: username: "+sellerData.getUsername());
+
+                saveSharedPreferences();
+
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+
             }
         });
     }

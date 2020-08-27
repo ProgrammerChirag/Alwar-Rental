@@ -1,40 +1,47 @@
 package User;
 
+import android.Manifest;
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.app.AlertDialog.Builder;
 import android.content.Context;
 import android.content.ContextWrapper;
 import android.content.DialogInterface;
-import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
+import android.provider.MediaStore;
 import android.util.Log;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
-import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
+import com.selflearn.alwarrenter.R;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
+import FirebaseConnectivity.StorageDevice;
 import Utils.CustomDialogMaker;
 import Utils.CustomProgressDialog;
+import Utils.SettingMemoryData;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class UserMemoryManagement {
-    
+
+    private static boolean PERMISSION_GRANTED;
     Context context;
-    
+    private static final String TAG = "UserMemoryManagement";
+    private int requestCode = 1234;
+
     public UserMemoryManagement(Context context)
     {
         this.context = context;
@@ -70,7 +77,7 @@ public class UserMemoryManagement {
         return directory.getAbsolutePath();
     }
 
-    public static void fetchFromDataBase(String account_type , String user_id, final Context context , final CircleImageView circleImageView)
+    public static void fetchFromDataBase(final String account_type , String user_id, final Context context , final CircleImageView circleImageView)
     {
 
         if(account_type == null || user_id == null )
@@ -80,7 +87,7 @@ public class UserMemoryManagement {
          return;
         }
         final CustomProgressDialog customProgressDialog = new CustomProgressDialog((Activity) context);
-        customProgressDialog.startLoadingDailog();
+        //customProgressDialog.startLoadingDailog();
         FirebaseStorage storage = FirebaseStorage.getInstance();
 
         StorageReference storageReference = storage.getReference("ProfileImages");
@@ -93,13 +100,13 @@ public class UserMemoryManagement {
             public void onSuccess(byte[] bytes) {
                 Bitmap bm = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
                 circleImageView.setImageBitmap(bm);
-                customProgressDialog.dismissDialog();
+                //customProgressDialog.dismissDialog();
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
                 Log.d("error",e.getMessage()+ " "+ e.getClass().getName());
-                customProgressDialog.dismissDialog();
+                //customProgressDialog.dismissDialog();
 
                 AlertDialog dialog = new AlertDialog.Builder(context).create();
                 dialog.setMessage("please upload your profile picture");
@@ -108,14 +115,55 @@ public class UserMemoryManagement {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.dismiss();
+                        Uri filePath = null;
+
+                        Bitmap bitmap = BitmapFactory.decodeResource(context.getResources() , R.drawable.demoimage);
+
+                        if (bitmap != null)
+                        {
+                            takePermission(bitmap , context , account_type);
+                        }
+                        else Log.d(TAG, "onClick: bitmap is getting null");
+
+
                     }
                 });
                 dialog.show();
-
             }
         });
     }
 
+    private static void takePermission(Bitmap bitmap, Context context, String account_type) {
 
+        new UserMemoryManagement(context).getPermission();
+
+        if (!PERMISSION_GRANTED) {
+            new UserMemoryManagement(context).getPermission();
+        }
+        else {
+            Log.d(TAG, "takePermission: uploading profile");
+            ByteArrayOutputStream bytes = new ByteArrayOutputStream();
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, bytes);
+            String path = MediaStore.Images.Media.insertImage(context.getContentResolver(), bitmap, "Title", null);
+            Uri filePath = Uri.parse(path);
+            StorageDevice.UploadUserProfilePicture(account_type, new SettingMemoryData(context).getSharedPrefString(String.valueOf(R.string.KEY_USER_ID)
+            ), context, filePath);
+        }
+    }
+
+    private  void getPermission() {
+
+        if (!(ContextCompat.checkSelfPermission(context, Manifest.permission.CAMERA)
+                == PackageManager.PERMISSION_GRANTED) &&
+                !(ContextCompat.checkSelfPermission(context , Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                        ==PackageManager.PERMISSION_GRANTED) &&
+                !(ContextCompat.checkSelfPermission(context , Manifest.permission.READ_EXTERNAL_STORAGE)
+                        ==PackageManager.PERMISSION_GRANTED)
+        ){
+                ActivityCompat.requestPermissions((Activity) context, new String[] {Manifest.permission.CAMERA , Manifest.permission.WRITE_EXTERNAL_STORAGE}, requestCode);
+        }else {
+            PERMISSION_GRANTED = true;
+        }
+    }
 
 }

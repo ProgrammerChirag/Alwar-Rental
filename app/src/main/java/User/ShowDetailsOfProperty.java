@@ -8,6 +8,8 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import androidx.appcompat.widget.Toolbar;
 
 import androidx.annotation.NonNull;
@@ -33,6 +35,7 @@ import java.util.List;
 
 import ModelClasses.PropertyData;
 import Utils.CustomProgressDialog;
+import Utils.SettingMemoryData;
 
 public class ShowDetailsOfProperty extends AppCompatActivity  {
 
@@ -52,8 +55,10 @@ public class ShowDetailsOfProperty extends AppCompatActivity  {
     String numBHK , Address , numRooms , background , area , cost;
     DatabaseReference databaseReference;
     String propertyType;
+    String sellerID;
     String dirName;
     List<String> names ;
+    String dateUpload , Cost;
     List<String> maps ;
 
     private ValueEventListener listener = new ValueEventListener() {
@@ -329,6 +334,9 @@ public class ShowDetailsOfProperty extends AppCompatActivity  {
         background = getIntent().getStringExtra(String.valueOf(R.string.background));
         cost = getIntent().getStringExtra(String.valueOf(R.string.cost));
         name = getIntent().getStringExtra("Name");
+        sellerID = getIntent().getStringExtra(String.valueOf(R.string.KEY_USER_ID));
+        Cost = getIntent().getStringExtra(String.valueOf(R.id.cost));
+        dateUpload = getIntent().getStringExtra(String.valueOf(R.id.purchaseDate));
 
         customProgressDialog = new CustomProgressDialog(ShowDetailsOfProperty.this);
         propertyDataList = new ArrayList<>();
@@ -369,11 +377,22 @@ public class ShowDetailsOfProperty extends AppCompatActivity  {
         sendRequest.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(ShowDetailsOfProperty.this , ActivityPropertyForRentUI.class);
-                intent.putExtra(String.valueOf(R.string.address) , Address);
-                intent.putExtra(String.valueOf(R.string.numRooms) , numRooms);
-                intent.putExtra("requestType" , propertyType);
-                startActivity(intent);
+
+                if (new SettingMemoryData(ShowDetailsOfProperty.this).getSharedPrefString(String.valueOf(R.string.KEY_USER_ID))!= null) {
+
+                    Intent intent = new Intent(ShowDetailsOfProperty.this, ActivityPropertyForRentUI.class);
+                    intent.putExtra(String.valueOf(R.string.address), Address);
+                    intent.putExtra(String.valueOf(R.string.numRooms), numRooms);
+                    intent.putExtra("requestType", propertyType);
+                    intent.putExtra(String.valueOf(R.string.KEY_USER_ID), sellerID);
+                    intent.putExtra(String.valueOf(R.id.cost), Cost);
+                    intent.putExtra(String.valueOf(R.id.purchaseDate), dateUpload);
+                    startActivity(intent);
+                }
+                else {
+                    Log.d(TAG, "onClick: account type is null or you are trying to access without account type please reset your memory or reinstall the app");
+                    Toast.makeText(getApplicationContext() ,"no account type defined you are not able to send request" , Toast.LENGTH_LONG).show();
+                }
             }
         });
 

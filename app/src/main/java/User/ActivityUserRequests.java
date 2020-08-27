@@ -23,6 +23,7 @@ import com.selflearn.alwarrenter.R;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import ModelClasses.RequestData;
 import Utils.CustomProgressDialog;
@@ -48,6 +49,17 @@ public class ActivityUserRequests extends AppCompatActivity {
         requestDataList = new ArrayList<>();
         customProgressDialog = new CustomProgressDialog(ActivityUserRequests.this);
         backBtn = findViewById(R.id.backBtn);
+        backBtn = findViewById(R.id.backBtn);
+        backBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                backBtn.setClickable(false);
+                onBackPressed();
+
+            }
+        });
+
         recyclerView_user_request = findViewById(R.id.recycler_view_request_history);
         text = findViewById(R.id.text2);
         recyclerView_user_request.setLayoutManager(new LinearLayoutManager(this , RecyclerView.VERTICAL ,false));
@@ -57,23 +69,37 @@ public class ActivityUserRequests extends AppCompatActivity {
 
     }
 
-    private void getAllRequestData() {
+    private void getAllRequestData()
+    {
 
         customProgressDialog.startLoadingDailog();
-        String UID = new SettingMemoryData(ActivityUserRequests.this).getSharedPrefString(String.valueOf(R.string.KEY_USER_ID));
+        final String UID = new SettingMemoryData(ActivityUserRequests.this).getSharedPrefString(String.valueOf(R.string.KEY_USER_ID));
 
         Log.d("UID"  , UID);
 
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("RequestData");
-        databaseReference = databaseReference.child(UID);
-        databaseReference.addValueEventListener(new ValueEventListener() {
+//        databaseReference = databaseReference.child(UID);
+
+        databaseReference.addValueEventListener(new ValueEventListener()
+        {
             @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
+            public void onDataChange(@NonNull DataSnapshot snapshot)
+            {
                 for(DataSnapshot snapshot1 : snapshot.getChildren())
                 {
-                    RequestData requestData = snapshot1.getValue(RequestData.class);
-                    requestDataList.add(requestData);
+                    for (DataSnapshot snapshot2 : snapshot1.getChildren()) {
+
+                        if (Objects.equals(snapshot2.getKey(), UID)) {
+
+                            for (DataSnapshot snapshot3 : snapshot2.getChildren()) {
+
+                                RequestData requestData = snapshot3.getValue(RequestData.class);
+                                requestDataList.add(requestData);
+                            }
+                        }
+                    }
                 }
+
                 Log.d("number of values" , String.valueOf(requestDataList.size()));
 
                 if(recyclerView_user_request != null) {

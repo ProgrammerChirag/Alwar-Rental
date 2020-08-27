@@ -10,9 +10,11 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.selflearn.alwarrenter.ActivityChooseLoginMethod;
 import com.selflearn.alwarrenter.ChooseLoginTypeActivity;
 import com.selflearn.alwarrenter.R;
 
+import AccountHandler.ActivityChooseLoginType;
 import User.ActivityUserEditProfile;
 import User.BottomNavActivity;
 import Utils.CustomDialogMaker;
@@ -72,7 +74,7 @@ public class ActivitySetting extends AppCompatActivity {
             public void onClick(View v) {
                 SignOut();
                 finish();
-                startActivity(new Intent(ActivitySetting.this, ChooseLoginTypeActivity.class));
+                startActivity(new Intent(ActivitySetting.this, ActivityChooseLoginType.class));
             }
         };
 

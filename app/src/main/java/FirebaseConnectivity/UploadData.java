@@ -103,7 +103,7 @@ public class UploadData {
 
     }
 
-    public void UploadDataRequest(final RequestData requestData)
+    public void UploadDataRequest(final RequestData requestData, String sellerID)
     {
         Log.d("sucess", "UploadDataRequest: upload data called");
 
@@ -112,17 +112,14 @@ public class UploadData {
         if (UserID != null && !UserID.isEmpty())
             Log.d("userId" , UserID);
 
-        UploadDataFromUserId(requestData , UserID);
-
-
-
-
+        UploadDataFromUserId(requestData , UserID , sellerID);
 
     }
 
-    private void UploadDataFromUserId(RequestData requestData, String uid) {
+    private void UploadDataFromUserId(RequestData requestData, String uid, String sellerID) {
+
         Log.d("success", "UploadDataFromUserId: data uploading to the database");
-        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("RequestData");
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("RequestData").child(sellerID);
         String key = databaseReference.child(uid).push().getKey();
         if (key != null) {
             databaseReference.child(uid).child(key).setValue(requestData).addOnCompleteListener(new OnCompleteListener<Void>() {

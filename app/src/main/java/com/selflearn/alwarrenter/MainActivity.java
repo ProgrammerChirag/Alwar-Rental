@@ -66,7 +66,7 @@ public class MainActivity extends AppCompatActivity {
                         switch (account_type) {
                             case "user":
 //                                customProgressDialog = new CustomProgressDialog(MainActivity.this);
-//                                customProgressDialog.startLoadingDailog();
+//                                customProgressDialog.startLoadingDialog();
                                 String name = new SettingMemoryData(MainActivity.this).getSharedPrefString(String.valueOf(R.string.KEY_NAME));
                                 String number = new SettingMemoryData(MainActivity.this).getSharedPrefString(String.valueOf(R.string.KEY_PHONE_NUMBER));
                                 if (name == null && number == null)
@@ -74,7 +74,7 @@ public class MainActivity extends AppCompatActivity {
                                     Log.d("result" , "both are null");
                                     FirebaseAuth.getInstance().signOut();
                                     finish();
-                                    startActivity(new Intent(MainActivity.this, ChooseLoginTypeActivity.class));
+                                    startActivity(new Intent(MainActivity.this, ActivityChooseLoginType.class));
                                 }
                                 else
                                     if(name == null){

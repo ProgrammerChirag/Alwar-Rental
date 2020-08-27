@@ -14,9 +14,13 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.TextView;
 
+import com.daimajia.androidanimations.library.Techniques;
+import com.daimajia.androidanimations.library.YoYo;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DatabaseReference;
@@ -32,6 +36,9 @@ public class ActivityPostNewProperty extends AppCompatActivity {
 
     RadioGroup numBHK , area , background , gender , purchaseType;
     EditText numRooms , cost , contactNumber , address;
+    ImageView backBtn;
+    TextView hint1 , hint2 , hint3 , hint4 , hint5;
+
     private static final String TAG = "ActivityPostNewProperty";
     private boolean IS_FORM_VALIDATED = false;
     CustomProgressDialog customProgressDialog;
@@ -55,11 +62,22 @@ public class ActivityPostNewProperty extends AppCompatActivity {
 
     private void findID() {
 
+        hint1 = findViewById(R.id.hint1);
+
+
+
+        hint2 = findViewById(R.id.hint2);
+        hint3 = findViewById(R.id.hint3);
+        hint4 = findViewById(R.id.hint4);
+        hint5 = findViewById(R.id.hint5);
+
+
         numBHK = findViewById(R.id.numBHK);
         if (numBHK == null)
             Log.d(TAG, "findID: returned null");
         area  = findViewById(R.id.area);
         background = findViewById(R.id.background);
+
         gender = findViewById(R.id.gender);
         purchaseType = findViewById(R.id.purchaseType);
 
@@ -83,6 +101,95 @@ public class ActivityPostNewProperty extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(ActivityPostNewProperty.this , TakingAddressActivity.class);
                 startActivityForResult(intent , 1234);
+            }
+        });
+
+        backBtn = findViewById(R.id.backBtn);
+        backBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                backBtn.setClickable(false);
+                onBackPressed();
+
+            }
+        });
+
+        hint1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (numBHK.getVisibility()==View.VISIBLE)
+                {
+                    YoYo.with(Techniques.SlideInDown)
+                            .duration(200)
+                            .repeat(1)
+                            .playOn(numBHK);
+                    numBHK.setVisibility(View.GONE);
+                }
+                else numBHK.setVisibility(View.VISIBLE);
+            }
+        });
+
+        hint2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if (area.getVisibility()==View.VISIBLE)
+                {
+                    YoYo.with(Techniques.SlideInDown)
+                            .duration(200)
+                            .repeat(1)
+                            .playOn(area);
+                    area.setVisibility(View.GONE);
+                }
+                else area.setVisibility(View.VISIBLE);
+
+            }
+        });
+
+        hint3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (background.getVisibility()==View.VISIBLE)
+                {
+                    YoYo.with(Techniques.SlideInDown)
+                            .duration(200)
+                            .repeat(1)
+                            .playOn(background);
+                    background.setVisibility(View.GONE);
+                }
+                else background.setVisibility(View.VISIBLE);
+            }
+        });
+
+        hint4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if (gender.getVisibility()==View.VISIBLE)
+                {
+                    YoYo.with(Techniques.SlideInDown)
+                            .duration(200)
+                            .repeat(1)
+                            .playOn(gender);
+                    gender.setVisibility(View.GONE);
+                }
+                else gender.setVisibility(View.VISIBLE);
+            }
+        });
+
+        hint5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (purchaseType.getVisibility()==View.VISIBLE)
+                {
+                    YoYo.with(Techniques.SlideInDown)
+                            .duration(200)
+                            .repeat(1)
+                            .playOn(purchaseType);
+                    purchaseType.setVisibility(View.GONE);
+                }
+                else purchaseType   .setVisibility(View.VISIBLE);
             }
         });
 
@@ -215,6 +322,7 @@ public class ActivityPostNewProperty extends AppCompatActivity {
     private void uploadDataToDataBase(String dirName) {
 
         try {
+
             propertyData = new PropertyData();
 
             propertyData.setAddressProperty(Address);

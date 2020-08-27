@@ -34,7 +34,6 @@ import Utils.CustomProgressDialog;
 public class UserSignUpActivity extends AppCompatActivity {
 
     LinearLayout login_bottom_button;
-    LinearLayout forgot_password_button;
     Button SIGN_UP ;
     EditText U_ID , EMAIL , PASSWORD , CONFIRM_PASSWORD , NAME;
 

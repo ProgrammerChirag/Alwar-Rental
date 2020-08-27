@@ -27,11 +27,12 @@
         android:layout_height="wrap_content"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        android:text="@string/login_as"
+        android:text="@string/continue_as"
+        android:visibility="visible"
         android:textAlignment="center"
         android:id="@+id/text"
         android:padding="10dp"
-        android:textSize="30sp"
+        android:textSize="28sp"
         android:fontFamily="@font/baloo_bhai"
         app:layout_constraintTop_toBottomOf="@+id/image_alwar_rental_icon"
         app:layout_constraintBottom_toTopOf="@+id/form"
@@ -47,8 +48,6 @@
         app:layout_constraintBottom_toTopOf="@id/ll"
         >
 
-
-
         <Button
             android:id="@+id/user"
             android:layout_width="match_parent"
@@ -58,12 +57,12 @@
             android:layout_marginStart="20dp"
             android:layout_marginTop="20dp"
             android:layout_marginEnd="20dp"
-            android:background="@drawable/btn_style2"
+            android:background="@drawable/btn_style3"
             android:elevation="0dp"
-            android:drawableEnd="@drawable/ic_check2"
+            android:drawableEnd="@drawable/ic_check"
             android:fontFamily="@font/montserrat"
-            android:padding="10dp"
-            android:text="@string/user"
+            android:padding="20sp"
+            android:text="@string/buy_property"
             android:textAllCaps="false"
             android:textColor="#fff" />
 
@@ -78,22 +77,23 @@
             android:layout_marginEnd="20dp"
             android:background="@drawable/btn_style6"
             android:elevation="0dp"
-            android:padding="10dp"
+            android:padding="20sp"
             android:fontFamily="@font/montserrat"
-            android:text="@string/seller"
+            android:text="@string/sell_your_property"
             android:textAllCaps="false"
             android:textColor="#000" />
 
         <Button
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="50dp"
             android:layout_width="250dp"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
+            android:layout_gravity="end"
+            android:layout_marginEnd="20sp"
             android:elevation="0dp"
             android:text="@string/next"
             android:textStyle="bold"
             android:textAllCaps="false"
-            android:background="@drawable/btn_style2"
+            android:background="@drawable/btn_style3"
             android:textColor="#fff"
             android:textSize="12sp"
             android:id="@+id/BtnNext"
@@ -113,4 +113,5 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@id/form"
         />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

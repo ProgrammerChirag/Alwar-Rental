@@ -4,8 +4,47 @@ public class RequestData {
 
     String name , reason , numRoom , location , budget , profesion , married_status , gender , requestType;
     String status;
+    String cost;
+    String sellerID;
+    String userID;
 
-    public RequestData(String name, String reason, String numRoom, String location, String budget, String profesion, String married_status, String gender , String requestType , String status) {
+    public String getCost() {
+        return cost;
+    }
+
+    public void setCost(String cost) {
+        this.cost = cost;
+    }
+
+    public String getDateUpload() {
+        return dateUpload;
+    }
+
+    public void setDateUpload(String dateUpload) {
+        this.dateUpload = dateUpload;
+    }
+
+    String dateUpload;
+
+    public String getSellerID() {
+        return sellerID;
+    }
+
+    public void setSellerID(String sellerID) {
+        this.sellerID = sellerID;
+    }
+
+    public String getUserID() {
+        return userID;
+    }
+
+    public void setUserID(String userID) {
+        this.userID = userID;
+    }
+
+    public RequestData(String name, String reason, String numRoom, String location, String budget, String profesion, String married_status, String gender , String requestType , String status , String cost , String  dateUpload , String sellerID , String userID) {
+
+
         this.name = name;
         this.reason = reason;
         this.numRoom = numRoom;
@@ -16,6 +55,11 @@ public class RequestData {
         this.gender = gender;
         this.requestType = requestType;
         this.status = status;
+        this.dateUpload = dateUpload;;
+        this.cost = cost;
+        this.sellerID = sellerID;
+        this.userID = userID;
+
     }
 
     public String getStatus() {

@@ -21,9 +21,6 @@ public class UserTransactionAdapter extends RecyclerView.Adapter<UserTransaction
     Context context ;
     List<TransactionData> transactionDataList;
 
-    public UserTransactionAdapter()
-    {}
-
     public UserTransactionAdapter(Context context , List<TransactionData> transactionDataList)
     {
         this.context = context;

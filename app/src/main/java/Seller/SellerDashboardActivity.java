@@ -15,6 +15,8 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -58,12 +60,12 @@ public class SellerDashboardActivity extends AppCompatActivity {
             settingMemoryData = new SettingMemoryData(SellerDashboardActivity.this);
             username = settingMemoryData.getSharedPrefString(String.valueOf(R.string.KEY_USER_ID));
 
-
             for (DataSnapshot snapshot1 : snapshot.getChildren())
             {
                 sellerData = snapshot1.getValue(SellerData.class);
                 if (sellerData != null)
                 if(username.equals(sellerData.getUsername())){
+
                     sellerData.setNumber(number);
 
                     new UploadData(SellerDashboardActivity.this).UploadDataOfSeller(sellerData , SellerDashboardActivity.this);
@@ -86,8 +88,6 @@ public class SellerDashboardActivity extends AppCompatActivity {
     private BottomNavigationView.OnNavigationItemSelectedListener listener_Activity = new BottomNavigationView.OnNavigationItemSelectedListener() {
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-
-
 
             switch (menuItem.getItemId())
             {
@@ -162,6 +162,7 @@ public class SellerDashboardActivity extends AppCompatActivity {
             customDialogMaker.createAndShowDialogWarningWithoutCancel("please verify your email account ");
             Log.d(TAG, "checkEmailVerifiedOrNot: email not verified");
             Log.d(TAG, "checkEmailVerifiedOrNot: " + firebaseUser.getEmail());
+            sendMailAgain();
 
         }else if(firebaseUser.isEmailVerified())
         {
@@ -170,6 +171,27 @@ public class SellerDashboardActivity extends AppCompatActivity {
             checkPhoneNumberExistsOrNot();
         }
 
+    }
+
+    private void sendMailAgain() {
+
+        FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+        if (firebaseUser != null)
+        {
+            firebaseUser.sendEmailVerification().addOnSuccessListener(new OnSuccessListener<Void>() {
+                @Override
+                public void onSuccess(Void aVoid) {
+                    Log.d(TAG, "onSuccess: email sent again");
+                    Toast.makeText(getApplicationContext() , "email sent successfully"  , Toast.LENGTH_LONG).show();
+                }
+            }).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
+
+                    Log.d(TAG, "onFailure: "+e.getMessage()+  " " +e.getClass().getName());
+                }
+            });
+        }
     }
 
     private void checkPhoneNumberExistsOrNot() {
@@ -215,17 +237,18 @@ public class SellerDashboardActivity extends AppCompatActivity {
         AlertDialog.Builder builder = new AlertDialog.Builder(SellerDashboardActivity.this);
 //        builder = new AlertDialog.Builder(activity);
         builder.setTitle("password")
-                .setMessage("please enter your current password")
+                .setMessage("please enter your phone number")
         ;
         final EditText editText = new EditText(SellerDashboardActivity.this);
         editText.setBackground(this.getDrawable(R.drawable.edit_text_style));
-        editText.setHint("please enter your current password");
+        editText.setHint("please enter your phone number");
         editText.setInputType(InputType.TYPE_CLASS_PHONE);
 //        editText.setPadding(100,10,100,10);
         editText.setWidth(150);
 //        LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
 //        lp.setMargins(20, 10, 20, 10);
 //        editText.setLayoutParams(lp);
+
         editText.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
 
         builder.setView(editText);

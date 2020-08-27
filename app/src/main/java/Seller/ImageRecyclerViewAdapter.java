@@ -25,11 +25,6 @@ public class ImageRecyclerViewAdapter extends RecyclerView.Adapter<ImageRecycler
         this.bitmapList = bitmapList;
     }
 
-    public ImageRecyclerViewAdapter()
-    {
-
-    }
-
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {

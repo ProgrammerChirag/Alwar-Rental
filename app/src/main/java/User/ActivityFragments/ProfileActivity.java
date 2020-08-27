@@ -62,7 +62,8 @@ public class ProfileActivity  extends Fragment {
     Context context;
     private final int PICK_IMAGE_REQUEST = 22;
     Bitmap profile_bitmap;
-    CustomProgressDialog customProgressDialog;
+    Button callUsBtn;
+  //  CustomProgressDialog customProgressDialog;
 
 
 
@@ -111,13 +112,15 @@ public class ProfileActivity  extends Fragment {
     private View.OnClickListener listener_save_and_back = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
+
             new CustomProgressDialog((Activity) context).startLoadingDailog();
 
             new Handler().postDelayed(new Runnable() {
                 @Override
                 public void run() {
-                    ((Activity)(context)).onBackPressed();
-                    new CustomProgressDialog((Activity)context).dismissDialog();
+                 //   customProgressDialog.dismissDialog();
+                    ((Activity) context).finish();
+                    startActivity(new Intent(context.getApplicationContext() , ChooseLoginTypeActivity.class));
                 }
             },1500);
 
@@ -192,7 +195,7 @@ public class ProfileActivity  extends Fragment {
     {
         this.context = context;
         this.account_type = account_type;
-        customProgressDialog = new CustomProgressDialog((Activity) context);
+        //customProgressDialog = new CustomProgressDialog((Activity) context);
     }
 
     @Nullable
@@ -245,7 +248,7 @@ public class ProfileActivity  extends Fragment {
         editPersonalDetails.setOnClickListener(listener_edit_personalDetails);
         editPersonalDetails_main = container.findViewById(R.id.edit_personal_details);
         editPersonalDetails_main.setOnClickListener(listener_edit_personalDetails);
-        Save = container.findViewById(R.id.saveBtn);
+        Save = container.findViewById(R.id.switchAccountBtn);
 //        BackBtn = container.findViewById(R.id.backBtn_to_dashboard);
         Save.setOnClickListener(listener_save_and_back);
 //        BackBtn.setOnClickListener(listener_back);
@@ -273,6 +276,18 @@ public class ProfileActivity  extends Fragment {
             findName();
         }
 
+        callUsBtn = container.findViewById(R.id.call_us);
+
+        callUsBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                String phoneNumber = "+919887822444";
+                Intent intent = new Intent(Intent.ACTION_DIAL, Uri.fromParts("tel", phoneNumber, null));
+                startActivity(intent);
+
+            }
+        });
 
 //        UserMemoryManagement.openFolder(context);
     }
@@ -349,7 +364,7 @@ public class ProfileActivity  extends Fragment {
                         new SettingMemoryData(context).getSharedPrefString(String.valueOf(R.string.KEY_USER_ID)),
                         context , filePath);
 
-                customProgressDialog.dismissDialog();
+                //customProgressDialog.dismissDialog();
 
             }
 
@@ -362,7 +377,7 @@ public class ProfileActivity  extends Fragment {
 
     @Override
     public void onDestroyView() {
-        customProgressDialog.dismissDialog();
+        //customProgressDialog.dismissDialog();
         super.onDestroyView();
     }
 }

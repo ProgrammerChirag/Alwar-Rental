@@ -14,12 +14,10 @@ import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.cardview.widget.CardView;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
 import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.MarkerOptions;
 import com.selflearn.alwarrenter.R;
 
 import java.io.IOException;
@@ -36,12 +34,10 @@ TakingAddressActivity extends AppCompatActivity
     private static final String TAG = "TakingAddressActivity";
     Button  saveBtn;
     Button getCurrentLocationBtn;
-    Address address_by_user;
     private static final int request_code = 1;
-    String Address ;
-    EditText pincode , house_info , road_or_area_info , city_info , state_info , landmark_info ;
+    EditText pinCodeEditText, house_info , road_or_area_info , city_info , state_info , landmark_info ;
     String pinCode , houseInfo , roadOrAreaInfo , cityInfo , stateInfo , landInfo;
-    float lattitude,  longitude;
+    float latitude,  longitude;
     private LatLng latLng_data ;
 
 
@@ -71,7 +67,6 @@ TakingAddressActivity extends AppCompatActivity
             finish();
         }
     };
-    private Object marker;
 
 
     @Override
@@ -101,7 +96,7 @@ TakingAddressActivity extends AppCompatActivity
     private void findId() {
         getCurrentLocationBtn = findViewById(R.id.get_current_location_btn1);
         saveBtn = findViewById(R.id.saveBtn_location1);
-        pincode = findViewById(R.id.pin_code);
+        pinCodeEditText = findViewById(R.id.pin_code);
         house_info = findViewById(R.id.building_info);
         road_or_area_info = findViewById(R.id.road_name_area_colony);
         city_info = findViewById(R.id.city);
@@ -141,12 +136,12 @@ TakingAddressActivity extends AppCompatActivity
         {
             if(resultCode == RESULT_OK)
             {
-                 lattitude = Float.parseFloat(Objects.requireNonNull(Objects.requireNonNull(data).getStringExtra("lat")));
+                 latitude = Float.parseFloat(Objects.requireNonNull(Objects.requireNonNull(data).getStringExtra("lat")));
                  longitude = Float.parseFloat(Objects.requireNonNull(data.getStringExtra("long")));
 
-                Log.d(TAG, "onActivityResult: " +String.valueOf(lattitude) + " " + String.valueOf(longitude));
+                Log.d(TAG, "onActivityResult: " + latitude + " " + longitude);
 
-                latLng_data = new LatLng(lattitude , longitude);
+                latLng_data = new LatLng(latitude, longitude);
 
                 setValueInForm();
 
@@ -169,18 +164,25 @@ TakingAddressActivity extends AppCompatActivity
 //                    markkedAddress = addresses.get(0).getAddressLine(0);
 
                     pinCode = addresses.get(0).getPostalCode();
-                    pincode.setText(pinCode);
+                    pinCodeEditText.setText(pinCode);
 
                     String str  = addresses.get(0).getAddressLine(0);
                     List<String> list = Arrays.asList(str.split(","));
                     houseInfo  = list.get(0);
+                    if (!houseInfo.equals("Unnamed Road"))
                     house_info.setText("house number "+ houseInfo);
+                    else house_info.setText(addresses.get(0).getLocality());
 
                     roadOrAreaInfo = list.get(1);
-                    if(!roadOrAreaInfo.trim().equals(addresses.get(0).getSubLocality().trim()))
-                    road_or_area_info.setText(roadOrAreaInfo + addresses.get(0).getSubLocality());
-                    else
-                        road_or_area_info.setText(roadOrAreaInfo );
+
+                    if (roadOrAreaInfo!=null && addresses.get(0).getSubLocality() != null) {
+                        Log.d(TAG, "setValueInForm: data is non null");
+                        if (!addresses.get(0).getSubLocality().trim().equals(roadOrAreaInfo))
+                            road_or_area_info.setText(roadOrAreaInfo + addresses.get(0).getSubLocality());
+                        else
+                            road_or_area_info.setText(roadOrAreaInfo);
+
+                    }else road_or_area_info.setText(addresses.get(1).getAddressLine(0));
 
                     cityInfo = addresses.get(0).getLocality();
                     city_info.setText(cityInfo);
@@ -188,9 +190,6 @@ TakingAddressActivity extends AppCompatActivity
                     stateInfo = addresses.get(0).getAdminArea();
                     state_info.setText(stateInfo);
 
-
-
-                  ;
 
                 }
             } catch (IOException e) {

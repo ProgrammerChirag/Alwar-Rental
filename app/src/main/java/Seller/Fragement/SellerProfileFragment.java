@@ -27,15 +27,14 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.selflearn.alwarrenter.ChooseLoginTypeActivity;
 import com.selflearn.alwarrenter.R;
 
 import java.io.IOException;
-import java.util.List;
 
 import AccountHandler.ActivityChooseLoginType;
 import FirebaseConnectivity.StorageDevice;
 import ModelClasses.SellerData;
-import Seller.ActivitySellerEditProfile;
 import Seller.ActivitySetting;
 import User.ActivityUserEditProfile;
 import User.UserMemoryManagement;
@@ -49,17 +48,16 @@ import static android.app.Activity.RESULT_OK;
 
 public class SellerProfileFragment extends Fragment{
 
-    String acconut_type;
+    String account_type;
     Context context;
     TextView Name;
     Bitmap profile_bitmap;
     SellerData sellerData;
-    List<SellerData> sellerDataList ;
-    CustomProgressDialog customProgressDialog;
+ //   CustomProgressDialog customProgressDialog;
     CircleImageView  profileImage;
     private final int PICK_IMAGE_REQUEST = 22;
 
-    Button mailUsBtn , editPersonalDetails , editPersonalDetails_main, changePassword;
+    Button mailUsBtn , editPersonalDetails , editPersonalDetails_main, changePassword , callUsBtn;
     TextView certified_text;
     Button Save;
     ImageButton settingBtn;
@@ -75,8 +73,6 @@ public class SellerProfileFragment extends Fragment{
             selectImage();
             // updating on profile view.
             // then uploading to storage of firebase.
-
-
 
             //saving to rhe main memory.
             new UserMemoryManagement(context).saveToInternalStorage(profile_bitmap);
@@ -110,7 +106,7 @@ public class SellerProfileFragment extends Fragment{
         @Override
         public void onClick(View v) {
 
-            Intent intent = new Intent(context.getApplicationContext() , ActivitySellerEditProfile.class);
+            Intent intent = new Intent(context.getApplicationContext() , ActivityUserEditProfile.class);
             ((Activity)(context)).finish();
             startActivity(intent);
         }
@@ -125,8 +121,9 @@ public class SellerProfileFragment extends Fragment{
             new Handler().postDelayed(new Runnable() {
                 @Override
                 public void run() {
-                    ((Activity)(context)).onBackPressed();
-                    new CustomProgressDialog((Activity)context).dismissDialog();
+//                    customProgressDialog.dismissDialog();
+                    ((Activity) context).finish();
+                    startActivity(new Intent(context.getApplicationContext() , ChooseLoginTypeActivity.class));
                 }
             },1500);
         }
@@ -168,7 +165,7 @@ public class SellerProfileFragment extends Fragment{
 
     public SellerProfileFragment(Context context, String account_type) {
         this.context = context;
-        this.acconut_type = account_type;
+        this.account_type = account_type;
     }
 
     @Nullable
@@ -183,7 +180,7 @@ public class SellerProfileFragment extends Fragment{
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         findID((ViewGroup) view);
-        customProgressDialog = new CustomProgressDialog((Activity) context);
+//        customProgressDialog = new CustomProgressDialog((Activity) context);
     }
 
     private void findID(ViewGroup container) {
@@ -199,7 +196,8 @@ public class SellerProfileFragment extends Fragment{
 
         profileImage = container.findViewById(R.id.profile_image_profileFragment);
         profileImage.setOnClickListener(listener_profile_image);
-        UserMemoryManagement.fetchFromDataBase(acconut_type,
+
+        UserMemoryManagement.fetchFromDataBase(account_type,
                 new SettingMemoryData(context).getSharedPrefString(String.valueOf(R.string.KEY_USER_ID)),
                 context , profileImage);
 
@@ -212,7 +210,7 @@ public class SellerProfileFragment extends Fragment{
         editPersonalDetails.setOnClickListener(listener_edit_profile);
         editPersonalDetails_main = container.findViewById(R.id.edit_personal_details);
         editPersonalDetails_main.setOnClickListener(listener_edit_profile);
-        Save = container.findViewById(R.id.saveBtn);
+        Save = container.findViewById(R.id.switchAccountBtn);
 //        BackBtn = container.findViewById(R.id.backBtn_to_dashboard);
         Save.setOnClickListener(listener_save_details);
 //        BackBtn.setOnClickListener(listener_back);
@@ -220,6 +218,19 @@ public class SellerProfileFragment extends Fragment{
         settingBtn.setOnClickListener(listener_setting_btn);
         changePassword = container.findViewById(R.id.change_password);
         changePassword.setOnClickListener(listener_change_password);
+
+        callUsBtn = container.findViewById(R.id.call_us);
+
+        callUsBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                String phoneNumber = "+919887822444";
+                Intent intent = new Intent(Intent.ACTION_DIAL, Uri.fromParts("tel", phoneNumber, null));
+                startActivity(intent);
+
+            }
+        });
     }
 
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
@@ -245,11 +256,11 @@ public class SellerProfileFragment extends Fragment{
                 profileImage.setImageBitmap(bitmap);
                 profile_bitmap = bitmap;
 
-                StorageDevice.UploadUserProfilePicture(acconut_type ,
+                StorageDevice.UploadUserProfilePicture(account_type,
                         new SettingMemoryData(context).getSharedPrefString(String.valueOf(R.string.KEY_USER_ID)),
                         context , filePath);
 
-                customProgressDialog.dismissDialog();
+//                customProgressDialog.dismissDialog();
 
             }
 
@@ -306,7 +317,7 @@ public class SellerProfileFragment extends Fragment{
 
     @Override
     public void onDestroyView() {
-        customProgressDialog.dismissDialog();
+//        customProgressDialog.dismissDialog();
         super.onDestroyView();
     }
 }

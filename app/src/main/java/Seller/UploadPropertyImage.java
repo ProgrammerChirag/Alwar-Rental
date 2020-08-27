@@ -1,6 +1,7 @@
 package Seller;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
@@ -27,6 +28,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 
 import FirebaseConnectivity.StorageDevice;
 import Utils.CustomDialogMaker;
@@ -114,9 +116,10 @@ public class UploadPropertyImage extends AppCompatActivity {
                 {
                     String dirName;
                     Date today = new Date();
-                    SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss a");
+                    @SuppressLint("SimpleDateFormat") SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss a");
                      dirName = format.format(today);
 
+                    if (customProgressDialog != null)
                      customProgressDialog.dismissDialog();
                      customProgressDialog.startLoadingDailog();
 
@@ -184,10 +187,8 @@ public class UploadPropertyImage extends AppCompatActivity {
         {
             if (grantResults.length > 0)
             {
-                for (int i=0 ; i <grantResults.length ; i++)
-                {
-                    if (grantResults[i] != PackageManager.PERMISSION_GRANTED)
-                    {
+                for (int grantResult : grantResults) {
+                    if (grantResult != PackageManager.PERMISSION_GRANTED) {
                         PERMISSION_GRANTED = false;
                         return;
                     }
@@ -204,8 +205,11 @@ public class UploadPropertyImage extends AppCompatActivity {
 
         if(requestCode == PICK_IMAGE && resultCode == RESULT_OK)
         {
-            Uri uri = data.getData();
-            Bitmap bitmap = null;
+            Uri uri = null;
+            if (data != null) {
+                uri = data.getData();
+            }
+            Bitmap bitmap;
             try {
                 bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), uri);
                 bitmapList.add(bitmap);
@@ -218,7 +222,9 @@ public class UploadPropertyImage extends AppCompatActivity {
 
         }else if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK)
         {
-            bitmap = (Bitmap) data.getExtras().get("data");
+            if (data != null) {
+                bitmap = (Bitmap) Objects.requireNonNull(data.getExtras()).get("data");
+            }
             bitmapList.add(bitmap);
             recyclerView.setAdapter(new ImageRecyclerViewAdapter(UploadPropertyImage.this , bitmapList));
             Log.d(TAG, "onActivityResult: " + bitmapList.size());
